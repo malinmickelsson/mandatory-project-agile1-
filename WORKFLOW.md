@@ -1,7 +1,7 @@
 
 <!--- comments -->
 
-### Projektplannering
+# Projektplannering
 Grupp: Malin Larsson, Oscar Nilsson, Daniel Lindberg och Avvy (Radoslava) Todorova
 ---
 
@@ -14,6 +14,7 @@ Grupp: Malin Larsson, Oscar Nilsson, Daniel Lindberg och Avvy (Radoslava) Todoro
 
 <!--- Vilka verktyg vi kommer att använda under projektets gång -->
 ## Verktyg
+- Trello - kanan-board
 - React
 - express.js
 - socket.io
@@ -21,11 +22,13 @@ Grupp: Malin Larsson, Oscar Nilsson, Daniel Lindberg och Avvy (Radoslava) Todoro
 - För brädet: https://github.com/oakmac/chessboardjs/
 ---
 
-# Ramverk
+### Ramverk
 
+### Paket
 
-# Paket
+### Kodstandard
 
+# Tester
 
 ## Scrum Roles
 
@@ -34,14 +37,10 @@ Grupp: Malin Larsson, Oscar Nilsson, Daniel Lindberg och Avvy (Radoslava) Todoro
 <!--- Regler kring git-hantering -->
 ## Githantering
 - Pull Requests -Oscar är huvudansvarig
+- Möten och Weekly Sprint hanteras som en Pull Request, och stängs sedan
 
 <!--- Vilka brancher som används, och regler för dessa -->
-# Brancher
-- master <!--- clean code -->
-- develop
-- meeting
-- release
-- feature
-- hotfix
-
+### Brancher
+- master - clean working code
+- develop - in progress
 ---
