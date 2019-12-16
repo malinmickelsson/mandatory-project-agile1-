@@ -9,7 +9,7 @@
 ## Arbetssätt
 - **Daily Standup** - kl.09.00 varje dag. Det startas en tråd där alla SNABBT redogör för 1. vad arbetade jag på igår? 2 Vad arbetar jag på idag? 3. Några problem? **OBLIGATORISK NÄRVARO** (frånvaro meddelas INNAN)
 - **Weekly Sprint** - varje måndag i direkt anslutning till Daily Standup. Vad ska göras i veckan? Scrum Master flyttar och assignar korten. **OBLIGATORISK NÄRVARO* (frånvaro meddelas INNAN)
-- **Dokumentering** - Malin
+- **Dokumentering** -hanteras som en Pull Request, och stängs sedan *- Malin är ansvarig*
 ---
 
 <!--- Vilka verktyg vi kommer att använda under projektets gång -->
@@ -37,8 +37,8 @@
 
 <!--- Regler kring git-hantering -->
 ## Githantering
-- **Pull Requests** -Oscar är huvudansvarig
-- **Möten och Weekly Sprint** hanteras som en Pull Request, och stängs sedan
+- **Pull Requests** -Alla commits ska vara taggade till en issue på github *-Oscar är huvudansvarig*
+- **Möten och Weekly Sprint** hanteras som en Pull Request, och stängs sedan *-Malin är huvudansvarig*
 
 <!--- Vilka brancher som används, och regler för dessa -->
 ### Brancher
