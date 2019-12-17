@@ -1,7 +1,9 @@
 branches:
   - label: förbättring
+    name: Develop
     prefix: feature/
   - label: bugg
+    name: Develop
     prefix: bugfix/
   - label: '*'
     prefix: issues/
