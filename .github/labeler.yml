@@ -2,10 +2,10 @@
 repo:
   - ./*
   
-# Add 'backend' label to any root file changes
+# Add 'backend' label to any backend changes
 repo:
-  - ./backend/*
+  - backend/*
   
-# Add 'frontend' label to any root file changes
+# Add 'frontend' label to any frontend changes
 repo:
-  - ./frontend/*
+  - frontend/*
