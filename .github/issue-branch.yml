@@ -1,0 +1,8 @@
+branches:
+  - label: förbättring
+    prefix: feature/
+  - label: bugg
+    prefix: bugfix/
+  - label: '*'
+    prefix: issues/
+branchName: short
