@@ -2,6 +2,9 @@ branches:
   - label: förbättring
     name: Develop
     prefix: feature/
+  - label: Todo
+    name: Develop
+    prefix: feature/
   - label: bugg
     name: Develop
     prefix: bugfix/
