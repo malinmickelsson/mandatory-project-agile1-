@@ -1,12 +1,33 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+import React from "react";
+import { render } from "react-dom";
+import { Router, Link } from "@reach/router";
+import Home from './Home.jsx';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+const Index = ({ children }) => (
+  <div>
+    <Router>
+      <Home path="/" />
+      <Dashboard path="dashboard" />
+      <NotFound default />
+    </Router>
+  </div>
+);
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+const Dashboard = () => (
+  <div>
+    <h2>Dashboard</h2>
+    <Link to="/">Home</Link>
+    <br />
+    <span>Some text</span>
+  </div>
+);
+
+const NotFound = () => (
+  <div>
+    <h2>Error 404</h2>
+    <span>Page do not exists</span>
+  </div>
+)
+
+
+render(<Index />, document.getElementById("root"));
