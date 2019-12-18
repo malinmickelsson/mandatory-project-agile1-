@@ -17,3 +17,4 @@
 - Dagliga, snabba avstämningar om vad vi har gjort under dagen. Valfri tid.
 - Använda reach/router istället för react-router-dom i frontend.
 - Skriva in uppdateringar inuti Trello-korten -för en snabb överblick.
+- Genomgång av Git workflow - issues och pull requests
