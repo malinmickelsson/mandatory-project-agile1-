@@ -1,0 +1,11 @@
+# Add 'repo' label to any root file changes
+repo:
+  - ./*
+  
+# Add 'backend' label to any backend changes
+backend:
+  - backend/*
+  
+# Add 'frontend' label to any frontend changes
+frontend:
+  - frontend/*
