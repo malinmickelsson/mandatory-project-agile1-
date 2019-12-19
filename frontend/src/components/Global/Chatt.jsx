@@ -20,6 +20,11 @@ const Chatt = () => {
             <span>Här kommer din text</span>
           </div>
 
+          <div className="chatt-user">
+            <span>User : </span>
+            <span>Lorem text som ska vara här senare</span>
+          </div>
+
         </div>
         <br />
         <div className="chatt-input-container">
