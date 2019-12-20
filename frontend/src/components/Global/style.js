@@ -22,17 +22,22 @@ const Bodytext = styled.p`
 //_________ knappar ____________
 const Button = styled.button`
   font-size: 1.3rem;
-  background-color: grey;
-  color: white;
-  border-radius: 5px;
-  padding: 7px 10px;
+  background-color: #f7fafc;
+  color: black;
+  border-radius: 25rem;
+  border: solid 1 #cbd5e0;
+  padding: 1rem 2rem;
+  cursor: pointer;
 `;
-
 //_________ kort ____________
 const Card = styled.div`
+  padding: 2.5rem;
+  border-radius: 5rem;
+  overflow: hidden;
+
   height: 300px;
   width: 300px;
 	background: white;
 	border: solid grey 1px;
-	border-radius: 5px;
+	
 `;
