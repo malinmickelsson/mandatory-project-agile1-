@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from "@reach/router";
-import './css/home.css';
+//import './css/home.css';
 
 const Home = () => {
 
@@ -9,7 +9,9 @@ const Home = () => {
         <div className="container">
             <h1>Home page</h1>
             <nav>
-                <Link to="/">Home</Link> <Link to="dashboard">Dashboard</Link>
+                <Link to="/">Home </Link> 
+                <Link to="dashboard">Dashboard </Link>
+                <Link to="/chessboard">Chessboard</Link>
             </nav>
             <br />
             <div className="box"></div>
