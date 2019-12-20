@@ -44,7 +44,7 @@ span {
 }
 .chatt-user {
     display: flex;
-    justify-content: start;
+    justify-content: flex-start;
     max-width: 60%;
     padding: 5px;
     /* flex-direction: row; */
