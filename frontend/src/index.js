@@ -2,7 +2,9 @@ import React from "react";
 import { render } from "react-dom";
 import { Router, Link } from "@reach/router";
 import Home from './Home.jsx';
+
 import ChessBoard from './components/Gameboard/ChessBoard';
+
 
 const Index = ({ children }) => (
   <div>
@@ -21,7 +23,7 @@ const Dashboard = () => (
     <h2>Dashboard</h2>
     <Link to="/">Home</Link>
     <br />
-    <span>Some text</span>
+    <br />
   </div>
 );
 
