@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Link } from "@reach/router";
+import React from 'react';
+//import { Link } from "@reach/router";
 // import './css/home.css';
 
 const Popup = (props) => {

@@ -1,9 +1,10 @@
-import React from 'react'
+import React from 'react';
+
 
 const ChessBoard = () => {
   return (
     <div>
-      
+  
     </div>
   )
 }
