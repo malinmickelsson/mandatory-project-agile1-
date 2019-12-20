@@ -1,0 +1,51 @@
+.box {
+    background-color: orangered;
+    width: 5%;
+    padding: 5%;
+}
+body {
+    background-color: rgb(61, 61, 61);
+}
+a {
+    color: blue;
+}
+span {
+    color: white;
+}
+
+
+
+
+.main-chatt-container {
+    display: flex;
+    justify-content: center;
+}
+.chatt-container {
+    border: 1px solid red;
+    width: 40%;
+    padding: 10px;
+}
+.chatt-input-container {
+    display: flex;
+    justify-content: center;
+}
+.chatt-text-container {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+}
+.chatt-me {
+    display: flex;
+    justify-content: flex-end;
+    margin-left: 40%;
+    max-width: 60%;
+    padding: 5px;
+    /* flex-direction: row; */
+}
+.chatt-user {
+    display: flex;
+    justify-content: flex-start;
+    max-width: 60%;
+    padding: 5px;
+    /* flex-direction: row; */
+}
