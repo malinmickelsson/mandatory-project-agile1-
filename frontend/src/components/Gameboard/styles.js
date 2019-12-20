@@ -1,10 +1,21 @@
 import Styled from "styled-components";
 
-export const Board = Styled.div`
-  display: "flex";
-  justify-content: "space-around";
-  align-items: "center";
-  flex-wrap: "wrap";
-  width: "100vw";
-  margin-top: 30px;
+
+export const Boardscontainer = Styled.div`
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  background-color: #282c34;
+  color: white;
+  margin: 0px;
+`;
+
+export const Body = Styled.div`
+  margin: 0;
+`;
+
+export const Title = Styled.h1`
+  text-align: center;
 `;

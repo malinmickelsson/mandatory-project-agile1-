@@ -1,4 +1,5 @@
 import rough from "roughjs";
+// måste fixas!!
 
 export const roughSquare = ({ squareElement, squareWidth }) => {
     let rc = rough.svg(squareElement);
