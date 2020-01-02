@@ -1,17 +1,19 @@
 // Chessboard.jsx is a chessboard for React. Inspired by chessboard.js
 import React from 'react';
+import { Link } from "@reach/router";
 import Chessboard from "chessboardjsx";
 //import { roughSquare } from "./Rough";
+import { ThemeProvider } from 'styled-components';
 
 //** Kommentera gärna, kram */
-
-import { Boardscontainer, Title, Body } from './styles';
-
+import { GlobalStyle } from '../Global/style';
+import { Boardscontainer, Body, TitleBoard } from './styles';
+import { Nav, Box, Title } from '../Global/style';
 
 function SchackBoard() {
     return (
         <Body>
-            <Title>Chessboard</Title>
+            <TitleBoard>Chessboard</TitleBoard>
             {/* <Chessboard position='start' /> */}
             <Chessboard
                 id="boardscontainer"
@@ -35,13 +37,20 @@ function SchackBoard() {
 
 function GameBoard() {
     return (
-        <>
-            <Boardscontainer>
-                <SchackBoard />
-            </Boardscontainer>
-        </>
+        <ThemeProvider theme={{ fontFamily: 'Merriweather, serif' }}>
+            <React.Fragment>
+                <Nav>
+                    <Box>
+                        <Link to="/"><Title>lichess Home</Title></Link>
+                    </Box>
+                </Nav>
+                <Boardscontainer>
+                    <SchackBoard />
+                </Boardscontainer>
+                <GlobalStyle whiteColor />
+            </React.Fragment>
+        </ThemeProvider>
     );
 }
 
 export default GameBoard;
-
