@@ -2,17 +2,21 @@ import React from "react";
 import { render } from "react-dom";
 import { Router, Link } from "@reach/router";
 import Home from './Home.jsx';
-import DefaultBoard from "./components/Gameboard/ChessBoard";
+
+import ChessBoard from './components/Gameboard/ChessBoard';
+
 
 const Index = ({ children }) => (
   <div>
     <Router>
       <Home path="/" />
       <Dashboard path="dashboard" />
+      <ChessBoard path="/chessboard" />
       <NotFound default />
     </Router>
   </div>
 );
+
 
 const Dashboard = () => (
   <div>
@@ -20,7 +24,6 @@ const Dashboard = () => (
     <Link to="/">Home</Link>
     <br />
     <br />
-    <DefaultBoard />
   </div>
 );
 

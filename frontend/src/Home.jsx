@@ -1,8 +1,10 @@
 import React, {useState} from 'react';
 import { Link } from "@reach/router";
+
 import './css/home.css';
 import Popup from "./components/Global/Popup.jsx";
 import Chatt from "./components/Global/Chatt.jsx";
+
 
 const Home = () => {
 
@@ -20,7 +22,9 @@ const Home = () => {
                 <button onClick={popupNewGame} > New Game</button>
             </div>
             <nav>
-                <Link to="/">Home</Link> <Link to="dashboard">Dashboard</Link>
+                <Link to="/">Home </Link> 
+                <Link to="dashboard">Dashboard </Link>
+                <Link to="/chessboard">Chessboard</Link>
             </nav>
             <br />
             <div className="box"></div>

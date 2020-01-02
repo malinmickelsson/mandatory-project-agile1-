@@ -8,9 +8,16 @@
     "@testing-library/react": "^9.4.0",
     "@testing-library/user-event": "^7.1.2",
     "chessboardjsx": "^2.4.2",
+    "chessjs": "0.0.1",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
+<<<<<<< HEAD
     "react-scripts": "3.3.0",
+=======
+    "react-rough": "^2.0.0",
+    "react-scripts": "3.3.0",
+    "roughjs": "^3.1.0",
+>>>>>>> unstable
     "styled-components": "^4.4.1"
   },
   "scripts": {
