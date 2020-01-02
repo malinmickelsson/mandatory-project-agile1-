@@ -3,9 +3,10 @@ import React from 'react';
 import { Link } from "@reach/router";
 import Chessboard from "chessboardjsx";
 //import { roughSquare } from "./Rough";
+import { ThemeProvider } from 'styled-components';
 
 //** Kommentera gärna, kram */
-
+import { GlobalStyle } from '../Global/style';
 import { Boardscontainer, Body, TitleBoard } from './styles';
 import { Nav, Box, Title } from '../Global/style';
 
@@ -36,16 +37,19 @@ function SchackBoard() {
 
 function GameBoard() {
     return (
-        <>
-            <Nav>
-                <Box>
-                    <Link to="/"><Title>lichess Home</Title></Link>
-                </Box>
-            </Nav>
-            <Boardscontainer>
-                <SchackBoard />
-            </Boardscontainer>
-        </>
+        <ThemeProvider theme={{ fontFamily: 'Merriweather, serif' }}>
+            <React.Fragment>
+                <Nav>
+                    <Box>
+                        <Link to="/"><Title>lichess Home</Title></Link>
+                    </Box>
+                </Nav>
+                <Boardscontainer>
+                    <SchackBoard />
+                </Boardscontainer>
+                <GlobalStyle whiteColor />
+            </React.Fragment>
+        </ThemeProvider>
     );
 }
 

@@ -1,7 +1,16 @@
 //=======================================
 // Bara globala styling-komponenter
 //=======================================
-import styled from "styled-components";
+import styled, { createGlobalStyle } from "styled-components";
+
+
+export const GlobalStyle = createGlobalStyle`
+  body {
+    background-color: ${props => (props.whiteColor ? 'rgb(61, 61, 61)' : 'white')};
+    font-family: ${props => props.theme.fontFamily};
+  }
+`;
+
 
 //nedan är bara exempelkod
 
@@ -63,12 +72,16 @@ export const Links = styled.a`
   align-items: center;
   font-size: 18px;
   padding: 0 20px;
-  text-decoration: none;
   font-weight: bold;
-  color: white;
 `;
 
 export const Box = styled.div`
   display: flex;
   margin: 0 auto;
+  a{
+    color: white;
+    text-decoration: none;
+  }
 `;
+
+export const NewGame = styled.div``;
