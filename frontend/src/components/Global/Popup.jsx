@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 //import { Link } from "@reach/router";
 // import './css/home.css';
 
@@ -13,7 +13,7 @@ const Popup = (props) => {
 
             {props.page === "home" ?
                 <div className="popup-home-container">
-                    
+
                 </div>
                 :
                 null

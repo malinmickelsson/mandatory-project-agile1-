@@ -1,11 +1,12 @@
 import React from "react";
 //import { Link } from "@reach/router";
 import "../../css/home.css";
+import { Button, mainChattContainer, chattContainer } from "./style.js";
 
 const Chatt = () => {
   return (
-    <div className="main-chatt-container">
-      <div className="chatt-container">
+    <mainChattContainer>
+      <chattContainer>
         <div className="chatt-text-container">
           <div className="chatt-user">
             <span>User : </span>
@@ -22,12 +23,12 @@ const Chatt = () => {
           </div>
         </div>
         <br />
-        <div className="chatt-input-container">
+        <chattInputContainer>
           <input type="text" />
-          <button>Send</button>
-        </div>
-      </div>
-    </div>
+          <Button>Send</Button>
+        </chattInputContainer>
+      </chattContainer>
+    </mainChattContainer>
   );
 };
 export default Chatt;
