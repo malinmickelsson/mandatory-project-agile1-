@@ -4,6 +4,7 @@ import { ThemeProvider } from 'styled-components';
 
 //import Popup from "./components/Global/Popup.jsx";
 import Chatt from "./components/Global/Chatt.jsx";
+import MatchesList from "./components/Home/ActiveGames";
 
 import {
     Title, Subtitle, Links, Nav, Box, Button, NewGame, GlobalStyle
@@ -32,10 +33,13 @@ const Home = () => {
                     <Chatt />
                     <Button>Ny Match</Button>
                 </Box>
+                <Box>
+                    <MatchesList />
+                </Box>
                 <GlobalStyle whiteColor />
             </React.Fragment>
         </ThemeProvider>
     );
 }
 
-export default Home
+export default Home;

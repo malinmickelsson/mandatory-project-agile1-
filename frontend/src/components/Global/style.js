@@ -8,6 +8,7 @@ export const GlobalStyle = createGlobalStyle`
   body {
     background-color: ${props => (props.whiteColor ? 'rgb(61, 61, 61)' : 'white')};
     font-family: ${props => props.theme.fontFamily};
+    min-height: 100vh;
   }
 `;
 
@@ -67,7 +68,7 @@ export const Nav = styled.nav`
   min-width: 100%;
 `;
 
-export const Links = styled.a`
+export const Links = styled.div`
   display: inline-flex;
   align-items: center;
   font-size: 18px;
