@@ -1,36 +1,55 @@
 //=======================================
 // Bara globala styling-komponenter
 //=======================================
-import styled from "styled-components";
+import styled, { createGlobalStyle } from "styled-components";
+
+
+export const GlobalStyle = createGlobalStyle`
+  body {
+    background-color: ${props => (props.whiteColor ? 'rgb(61, 61, 61)' : 'white')};
+    font-family: ${props => props.theme.fontFamily};
+  }
+`;
+
 
 //nedan är bara exempelkod
 
 //_________ text ____________
-const Title = styled.h1`
-  font-size: 3.5rem;
-  color: black;
-`;
-const Subtitle = styled.h3`
-  font-size: 1.5rem;
-  color: black;
+export const Title = styled.h1`
+  font-size: 3rem;
+  color: green;
+  flex: 1;
+  padding: 0;
+  margin: 0 700px auto 0;
+  text-shadow: 1px 1px 2px black, 0 0 1em purple, 0 0 0.2em;
 `;
 
-const Bodytext = styled.p`
+export const Subtitle = styled.h3`
+  font-size: 1.5rem;
+  text-align: center;
+  color: #ffe6ff;
+`;
+
+export const Bodytext = styled.p`
   font-size: 1rem;
   color: black;
 `;
+
 //_________ knappar ____________
-const Button = styled.button`
+export const Button = styled.button`
   font-size: 1.3rem;
-  background-color: #f7fafc;
-  color: black;
-  border-radius: 25rem;
-  border: solid 1 #cbd5e0;
+  background-color: #1f8500;
+  border: 1px solid black;
+  outline-style: double;
+  outline-color: green;
+  color: white;
   padding: 1rem 2rem;
   cursor: pointer;
+  margin: auto auto;
 `;
+
 //_________ kort ____________
-const Card = styled.div`
+export const Card = styled.div`
   padding: 2.5rem;
   border-radius: 5rem;
   overflow: hidden;
@@ -41,3 +60,28 @@ const Card = styled.div`
 	border: solid grey 1px;
 	
 `;
+
+//_________ Header ____________
+export const Nav = styled.nav`
+  height: 80px;
+  min-width: 100%;
+`;
+
+export const Links = styled.a`
+  display: inline-flex;
+  align-items: center;
+  font-size: 18px;
+  padding: 0 20px;
+  font-weight: bold;
+`;
+
+export const Box = styled.div`
+  display: flex;
+  margin: 0 auto;
+  a{
+    color: white;
+    text-decoration: none;
+  }
+`;
+
+export const NewGame = styled.div``;

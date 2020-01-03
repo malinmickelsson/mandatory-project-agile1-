@@ -7,15 +7,14 @@ export const Boardscontainer = Styled.div`
   align-items: center;
   width: 100vw;
   height: 100vh;
-  background-color: #282c34;
   color: white;
   margin: 0px;
 `;
 
 export const Body = Styled.div`
-  margin: 0;
+  margin: 0px;
 `;
 
-export const Title = Styled.h1`
+export const TitleBoard = Styled.h1`
   text-align: center;
 `;
