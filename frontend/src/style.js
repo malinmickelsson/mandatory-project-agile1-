@@ -2,11 +2,6 @@ import Styled from "styled-components";
 // Avvy- gjort från css till styled-components
 
 // ** ------------ Chatt.jsx style -----------------** //
-export const Links = Styled.a`
-  color: white;
-  text-decoration: none;
-`;
-
 export const Span = Styled.span`
   color: white;
 `;
