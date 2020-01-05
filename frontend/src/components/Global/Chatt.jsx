@@ -1,34 +1,44 @@
 import React from "react";
 //import { Link } from "@reach/router";
-import "../../css/home.css";
-import { Button, mainChattContainer, chattContainer } from "./style.js";
+
+
+import {
+  MainChatt, ChattBox, ChattText, ChattInput,
+  ChattMe, ChattUser, ChattButton, Span, InputDiv
+} from '../../style';
+
 
 const Chatt = () => {
+
   return (
-    <mainChattContainer>
-      <chattContainer>
-        <div className="chatt-text-container">
-          <div className="chatt-user">
-            <span>User : </span>
-            <span>Här kommer texten att vara</span>
-          </div>
+    <MainChatt>
+      <ChattBox>
 
-          <div className="chatt-me">
-            <span>Här kommer din text</span>
-          </div>
+        <ChattText>
+          <ChattUser>
+            <Span>User : </Span>
+            <Span> Här kommer texten att vara</Span>
+          </ChattUser>
 
-          <div className="chatt-user">
-            <span>User : </span>
-            <span>Lorem text som ska vara här senare</span>
-          </div>
-        </div>
-        <br />
-        <chattInputContainer>
-          <input type="text" />
-          <Button>Send</Button>
-        </chattInputContainer>
-      </chattContainer>
-    </mainChattContainer>
+          <ChattMe>
+            <Span> Här kommer din text</Span>
+          </ChattMe>
+
+          <ChattUser>
+            <Span>User : </Span>
+            <Span> Lorem text som ska vara här senare</Span>
+          </ChattUser>
+        </ChattText>
+
+        <InputDiv>
+          <ChattInput type="text" placeholder=" Write a message .."></ChattInput>
+          <ChattButton>Send</ChattButton>
+        </InputDiv>
+
+      </ChattBox>
+    </MainChatt>
   );
+
 };
+
 export default Chatt;

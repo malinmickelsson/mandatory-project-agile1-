@@ -1,37 +1,45 @@
 import React, {useState} from 'react';
 import { Link } from "@reach/router";
+import { ThemeProvider } from 'styled-components';
 
-import './css/home.css';
-import Popup from "./components/Global/Popup.jsx";
+//import Popup from "./components/Global/Popup.jsx";
 import Chatt from "./components/Global/Chatt.jsx";
+import MatchesList from "./components/Home/ActiveGames";
 
-import { Container, NewGame, Body } from './style';
+import {
+    Title, Subtitle, Links, Nav, Box, Button, NewGame, GlobalStyle
+} from './components/Global/style';
 
 const Home = () => {
 
-    const [newGame, setNewGame] = useState(false);
-
-    function popupNewGame () {
-        setNewGame(true);
-    }
-
     return (
-        <Container>
-            <h1>Home page</h1>
-            <NewGame>
-                {/* <Popup page="home" /> */}
-                <button onClick={popupNewGame} > New Game</button>
-            </NewGame>
-            <nav>
-                <Link to="/">Home </Link> 
-                <Link to="dashboard">Dashboard </Link>
-                <Link to="/chessboard">Chessboard</Link>
-            </nav>
-            <br />
-            {newGame ?
-            <Popup page="temp" setNewGame={setNewGame} />
-            : null}
-        </Container>
+        <ThemeProvider theme={{ fontFamily: 'Merriweather, serif' }}>
+            <React.Fragment>
+                <Nav>
+                    <Box>
+                        <Link to="/"><Title>lichess Home</Title></Link>
+                        <Links><Link to="dashboard">Dashboard </Link></Links>
+                        <Links><Link to="/chessboard">Chessboard</Link></Links>
+                    </Box>
+                </Nav>
+
+                <Subtitle>Matcher</Subtitle>
+                <Box>
+
+                    <NewGame>
+                        {/* <Popup page="home" /> */}
+                    </NewGame>
+
+                    <Chatt />
+                    <Button>Ny Match</Button>
+                </Box>
+                <Box>
+                    <MatchesList />
+                </Box>
+                <GlobalStyle whiteColor />
+            </React.Fragment>
+        </ThemeProvider>
     );
 }
-export default Home
+
+export default Home;
