@@ -5,6 +5,7 @@ import './css/home.css';
 import Popup from "./components/Global/Popup.jsx";
 import Chatt from "./components/Global/Chatt.jsx";
 
+import { Container, Title, Body } from './styles';
 
 const Home = () => {
 
@@ -15,7 +16,7 @@ const Home = () => {
     }
 
     return (
-        <div className="container">
+        <Container>
             <h1>Home page</h1>
             <div className="new-game">
                 {/* <Popup page="home" /> */}
@@ -34,7 +35,7 @@ const Home = () => {
             {newGame ?
             <Popup page="temp" setNewGame={setNewGame} />
             : null}
-        </div>
+        </Container>
     );
 }
 export default Home
