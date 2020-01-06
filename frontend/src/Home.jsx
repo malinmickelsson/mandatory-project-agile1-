@@ -1,8 +1,8 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import { Link } from "@reach/router";
 import { ThemeProvider } from 'styled-components';
 
-//import Popup from "./components/Global/Popup.jsx";
+import Popup from "./components/Global/Popup.jsx";
 import Chatt from "./components/Global/Chatt.jsx";
 import MatchesList from "./components/Home/ActiveGames";
 
@@ -11,6 +11,12 @@ import {
 } from './components/Global/style';
 
 const Home = () => {
+
+    const [newGame, setNewGame] = useState(false);
+
+    function popupNewGame() {
+        setNewGame(true);
+    }
 
     return (
         <ThemeProvider theme={{ fontFamily: 'Merriweather, serif' }}>
@@ -31,7 +37,10 @@ const Home = () => {
                     </NewGame>
 
                     <Chatt />
-                    <Button>Ny Match</Button>
+                    <Button onClick={popupNewGame}>Ny Match</Button>
+                    {newGame ?
+                        <Popup page="temp" setNewGame={setNewGame} />
+                        : null}
                 </Box>
                 <Box>
                     <MatchesList />
