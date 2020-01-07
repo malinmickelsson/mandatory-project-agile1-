@@ -10,10 +10,28 @@ const Popup = (props) => {
 
   const [modal, setModal] = useState(false);
   const [modalCancel, setModalCancel] = useState(false);
+  const [tempInfo, setTempInfo] = useState({ gamename: '' });
 
   function closeModal() {
     setModalCancel(true);
     props.setNewGame(false);
+  }
+  /*
+  const [username, setUsername] = useState({ username: "" });
+
+    function handleChange (e) {
+        setUsername({username: e.target.value});
+      }
+  */
+
+  function handleSubmit(event) {
+    event.preventDefault();
+    console.log("test");
+    
+  }
+
+  function handleChange(event) {
+    setTempInfo(event.target.value);
   }
 
   return (
@@ -25,34 +43,36 @@ const Popup = (props) => {
               <CloseButton onClick={closeModal}>&times;</CloseButton>
             </ModalHeader>
             <ModalBody>
+            <form onSubmit={handleSubmit}>
+                <Section>
+                  <span>Choose color : </span>
+                  <br />
+                  <span>black</span><input type="radio" />
+                  <span>white</span><input type="radio" />
+                </Section>
 
-              <Section>
-                <span>Choose color : </span>
-                <br />
-                <span>black</span><input className="color-black" type="radio" />
-                <span>white</span><input className="color-white" type="radio" />
-              </Section>
+                <Section>
+                  <span>Game name</span>
+                  <br />
+                  <input type="text" value={setTempInfo} />
+                </Section>
 
-              <Section>
-                <span>Game name</span>
-                <br />
-                <input type="text" />
-              </Section>
+                <Section>
+                  <span>Time</span>
+                  <br />
+                  <input type="number" placeholder="min..." />
+                </Section>
 
-              <Section>
-                <span>Time</span>
-                <br />
-                <input type="number" placeholder="min..." />
-              </Section>
-
+                <Section>
+                  <button type="submit">Creat Game</button>
+                </Section>
+                </form>
             </ModalBody>
 
-            <ModalFooter>
-              <section>
-                <button>Creat Game</button>
-              </section>
-            </ModalFooter>
-
+              <ModalFooter>
+                <span>Footer</span>
+              </ModalFooter>
+            
           </ModalContent>
           : null}
 
