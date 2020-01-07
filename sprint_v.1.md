@@ -1,4 +1,4 @@
-### TISDAG 2019-12-17 (medverkande: Malin, Oscar, Daniel)
+### TISDAG 2019-12-17 (medverkande: Malin, Oscar, Daniel, Avvy)
 
 **Initial arbetsfördelning för projektet:**
 - Backend: @sawariz0r 

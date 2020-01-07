@@ -24,13 +24,11 @@ const GameStatusHub = () => {
         <YourTime>10:10</YourTime>
         <YourTur>Your Turn</YourTur>
       </Wrapper>
-
       <Txt>Chat-View</Txt>
       <Ul>
         <Li>Your text..</Li>
         <Li>Opponent text..</Li>
       </Ul>
-
       <TurnBox>
         <ChattInput type="text" placeholder=" Write a message .."></ChattInput>
         <ChattButton>Send</ChattButton>

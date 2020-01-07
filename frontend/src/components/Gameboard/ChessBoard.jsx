@@ -2,18 +2,21 @@
 import React from 'react';
 import { Link } from "@reach/router";
 import Chessboard from "chessboardjsx";
+import GameStatusHub from "./GameStatusHub";
 //import { roughSquare } from "./Rough";
 import { ThemeProvider } from 'styled-components';
 
 //** Kommentera gärna, kram */
-import { GlobalStyle } from '../Global/style';
-import { Boardscontainer, Body, TitleBoard } from './styles';
-import { Nav, Box, Title } from '../Global/style';
+import { Boardscontainer, Body, TitleBoard, Txt, YourTur, OppTur, TurnBox } from './styles';
+import { Nav, Box, Title, GlobalStyle } from '../Global/style';
 
 function SchackBoard() {
     return (
         <Body>
             <TitleBoard>Chessboard</TitleBoard>
+            <TurnBox>
+                <YourTur>YourName </YourTur><Txt> : </Txt><OppTur> OpponentName</OppTur>
+            </TurnBox>
             {/* <Chessboard position='start' /> */}
             <Chessboard
                 id="boardscontainer"
@@ -46,6 +49,7 @@ function GameBoard() {
                 </Nav>
                 <Boardscontainer>
                     <SchackBoard />
+                    <GameStatusHub />
                 </Boardscontainer>
                 <GlobalStyle whiteColor />
             </React.Fragment>
