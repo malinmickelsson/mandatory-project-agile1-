@@ -4,7 +4,8 @@ import { USER_CONNECTED, LOGOUT } from './Events';
 import LoginForm from './LoginForm';
 import ChatContainer from './chats/ChatContainer';
 
-const socketUrl = 'http://192.168.56.1:3230';
+const socketUrl = 'http://192.168.56.1:3230'; //ip + server
+
 export default class Layout extends Component {
   constructor(props) {
     super(props);
