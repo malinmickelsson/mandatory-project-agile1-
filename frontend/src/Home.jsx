@@ -14,27 +14,27 @@ import {
 const Home = () => {
 
     const [newGame, setNewGame] = useState(false);
-    const [username, setUsername] = useState("ernie");
-    // const [result, setResult] = useState();
+    const [username, setUsername] = useState("");
+    const [result, setResult] = useState("new player");
 
 
 
-    const socket = io("https://c8217ef2.eu.ngrok.io");
+    // const socket = io("https://c8217ef2.eu.ngrok.io");
 
-    socket.on("connect", () => {
-        console.log("connected");
-    });
+    // socket.on("connect", () => {
+    //     console.log("connected");
+    // });
 
-    let userId = "temp"
-    socket.emit("userId", userId);
+    // let userId = "temp"
+    // socket.emit("userId", userId);
 
-    // let tempName = "malin";
-    socket.emit("setName", username);
+    // // let tempName = "malin";
+    // socket.emit("setName", username);
 
-    socket.on("userInfo", (res) => {
-        console.log(res.data.name);
-        // setResult(res.data)
-    })
+    // socket.on("userInfo", (res) => {
+    //     console.log(res.data.name);
+    //     // setResult(res.data.name)
+    // })
 
 
 
@@ -45,24 +45,25 @@ const Home = () => {
     }
 
     function handleChange(e) {
-        let user = e.target.value;
-        console.log(user);
-        if (user.length) {
-            setUsername(user)
-        }
+        setUsername(e.target.value);
     }
 
     function handleSubmit(e) {
         e.preventDefault();
+        if(username.length){
+            setResult(username)
+        } 
     }
 
-    console.log(username);
+    // console.log(username);
+    // console.log(result);
+    
     // console.log(result.data);
     
 
     return (
         <ThemeProvider theme={{ fontFamily: 'Merriweather, serif' }}>
-            {!username.length ?
+            {result !== "new player" ?
                 <React.Fragment>
                     <Nav>
                         <Box>
@@ -92,7 +93,7 @@ const Home = () => {
                 </React.Fragment>
                 :
                 <form onSubmit={handleSubmit}>
-                    <input placeholder="Username..." onSubmit={handleChange} type="text" />
+                    <input placeholder="Username..." onChange={handleChange} type="text" />
                     <button type="submit">Submit</button>
                 </form>
             }
