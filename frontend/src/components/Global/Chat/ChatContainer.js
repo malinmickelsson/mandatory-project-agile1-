@@ -16,11 +16,10 @@ export default class ChatContainer extends Component {
 							<SideBar
 								logout = {logout}
 								chats = {chats}
-								user = {user}
+								user = {user} 
 								activeChat = {activeChat}
 								setActiveChat = {this.setActiveChat}
 							/>
-                
             </div>
         )
     }
