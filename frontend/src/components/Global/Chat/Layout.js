@@ -4,7 +4,7 @@ import { USER_CONNECTED, LOGOUT } from './Events';
 import LoginForm from './LoginForm';
 import ChatContainer from './chats/ChatContainer';
 
-const socketUrl = 'http://192.168.56.1:3230'; //ip + server
+const socketUrl = 'http://192.168.56.1:3230'; //tillfällig. Ska vara Oscars sen (UTAN server)
 
 export default class Layout extends Component {
   constructor(props) {
