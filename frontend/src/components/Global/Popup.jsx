@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
-import Home from "../../Home.jsx";
+// import Home from "../../Home.jsx";
 //import { Link } from "@reach/router";
-import './popup.css';
+
+import {
+  Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, CloseButton, Section
+} from './style';
 
 const Popup = (props) => {
 
@@ -14,60 +17,46 @@ const Popup = (props) => {
   }
 
   return (
-    <div className="container">
-
-      <div className="modal">
+    <>
+      <Modal>
         {props.page === "temp" ?
-          <div className="modal-content">
-            <div className="modal-header">
-              <button onClick={closeModal} className="close-btn">&times;</button>
-            </div>
-            <div className="modal-body">
-              <br />  
-              <section>
+          <ModalContent>
+            <ModalHeader>
+              <CloseButton onClick={closeModal}>&times;</CloseButton>
+            </ModalHeader>
+            <ModalBody>
+
+              <Section>
                 <span>Choose color : </span>
-              </section>
-    
-              <section>
+                <br />
                 <span>black</span><input className="color-black" type="radio" />
                 <span>white</span><input className="color-white" type="radio" />
-              </section>
+              </Section>
 
-              <br />
-
-              <section>
+              <Section>
                 <span>Game name</span>
-              </section>
-              <section>
+                <br />
                 <input type="text" />
-              </section>
+              </Section>
 
-              <br />
-
-              <section>
+              <Section>
                 <span>Time</span>
-              </section>
-              <section>
+                <br />
                 <input type="number" placeholder="min..." />
+              </Section>
+
+            </ModalBody>
+
+            <ModalFooter>
+              <section>
+                <button>Creat Game</button>
               </section>
-              
-              <br />
+            </ModalFooter>
 
-            <section>
-              <button>Creat Game</button>
-            </section>
-            <br />
-
-            </div>
-            <br />
-            <div className="modal-footer">
-              <span>this will be the footer</span>
-            </div>
-
-          </div>
+          </ModalContent>
           : null}
 
-      </div>
+      </Modal>
 
       {props.page === "home" ?
         <div className="popup-home-container">
@@ -76,8 +65,7 @@ const Popup = (props) => {
         :
         null
       }
-
-    </div>
+    </>
   );
 }
 export default Popup

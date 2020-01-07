@@ -34,9 +34,6 @@ export const ChattInput = Styled.input`
   background: #fafafa;
   display: inline-flex;
   align-items: center;
-  &:focus{
-    background-color:  #e6ffff;
-  }
 `;
 
 export const ChattText = Styled.div`
