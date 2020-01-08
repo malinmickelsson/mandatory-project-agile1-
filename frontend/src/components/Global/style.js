@@ -12,7 +12,10 @@ export const GlobalStyle = createGlobalStyle`
   }
 `;
 
+<<<<<<< HEAD
 //nedan är bara exempelkod
+=======
+>>>>>>> unstable
 
 //_________ text ____________
 export const Title = styled.h1`
@@ -83,6 +86,7 @@ export const Box = styled.div`
   }
 `;
 
+<<<<<<< HEAD
 export const NewGame = styled.div``;
 
 export const Ul = styled.ul``;
@@ -146,3 +150,83 @@ export const ChattUser = styled.div`
   padding: 5px;
   /* flex-direction: row; */
 `;
+=======
+
+/* Popup */
+
+export const Modal = styled.div`
+position: fixed;
+z-index: 101;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+display: flex;
+justify-content: center;
+align-items: center;
+background-color: rgba(0, 0, 0, 0.4);
+`;
+
+export const ModalContent = styled.div`
+  width: 40%;
+  min-height: 25vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-radius: 1vh;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  background-color: #232323;
+
+  padding: 20px; 
+`;
+
+export const ModalHeader = styled.div`
+display: flex;
+justify-content: flex-end;
+`;
+
+export const ModalBody = styled.div`
+  color: white;
+  text-align: center;
+  font-size: 20px;
+  width: 100%;
+  // height: 18vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border: 1px solid black;
+`;
+
+export const ModalFooter = styled.div`
+  color: white;
+  text-align: center;
+  font-size: 20px;
+  width: 100%;
+  // height: 18vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border: 1px solid black;
+`;
+
+export const CloseButton = styled.button`
+color: white;
+font-size: 30px;
+background: none;
+border: none;
+&:hover{
+    color: black;
+    cursor: pointer;
+}
+`;
+
+export const Section = styled.div`
+  padding: 20px;
+`;
+
+/* Popup */
+
+export const NewGame = styled.div``;
+>>>>>>> unstable
