@@ -15,15 +15,7 @@
     "react-scripts": "3.3.0",
     "react-use-form-state": "^0.12.1",
     "roughjs": "^3.1.0",
-<<<<<<< HEAD
     "socket.io-client": "^2.3.0",
-=======
-<<<<<<< HEAD
-    "socket.io": "^2.3.0",
-=======
-    "socket.io-client": "^2.3.0",
->>>>>>> 15e7f774c020c9fa28f30db8f612b2cb16531974
->>>>>>> unstable
     "styled-components": "^4.4.1"
   },
   "scripts": {

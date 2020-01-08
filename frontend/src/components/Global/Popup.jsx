@@ -19,7 +19,6 @@ const Popup = (props) => {
   }
   /*
   const [username, setUsername] = useState({ username: "" });
-
     function handleChange (e) {
         setUsername({username: e.target.value});
       }

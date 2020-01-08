@@ -12,11 +12,6 @@ export const GlobalStyle = createGlobalStyle`
   }
 `;
 
-<<<<<<< HEAD
-//nedan är bara exempelkod
-=======
->>>>>>> unstable
-
 //_________ text ____________
 export const Title = styled.h1`
   font-size: 3rem;
@@ -56,7 +51,6 @@ export const Card = styled.div`
   padding: 2.5rem;
   border-radius: 5rem;
   overflow: hidden;
-
   height: 300px;
   width: 300px;
   background: white;
@@ -86,85 +80,19 @@ export const Box = styled.div`
   }
 `;
 
-<<<<<<< HEAD
-export const NewGame = styled.div``;
-
-export const Ul = styled.ul``;
-export const Li = styled.li`
-  list-style-type: none;
-  text-align: left;
-`;
-
-export const TurnBox = styled.div`
-  display: flex;
-  justify-content: space-around;
-`;
-
-export const ChattButton = styled.div`
-  text-align: center;
-  font-size: 1rem;
-  background-color: #1f8500;
-  border: 1px solid black;
-  outline-style: double;
-  outline-color: green;
-  color: white;
-  padding: 0.5rem 1rem;
-  cursor: pointer;
-  margin: auto auto;
-`;
-
-export const ChattInput = styled.input`
-  font-size: 1rem;
-  border: 1px solid lightgreen;
-  cursor: text;
-  outline: none;
-  padding: 12px 20px;
-  box-sizing: border-box;
-  background: #fafafa;
-  display: inline-flex;
-  align-items: center;
-  &:focus {
-    background-color: #e6ffff;
-  }
-`;
-
-export const ChattText = styled.div`
-  padding: 10px;
-  display: flex;
-  flex-direction: column;
-`;
-
-export const ChattMe = styled.div`
-  display: flex;
-  justify-content: flex-end;
-  margin-left: 40%;
-  max-width: 60%;
-  padding: 5px;
-  /* flex-direction: row; */
-`;
-
-export const ChattUser = styled.div`
-  display: flex;
-  justify-content: flex-start;
-  max-width: 60%;
-  padding: 5px;
-  /* flex-direction: row; */
-`;
-=======
-
 /* Popup */
 
 export const Modal = styled.div`
-position: fixed;
-z-index: 101;
-top: 0;
-left: 0;
-width: 100%;
-height: 100%;
-display: flex;
-justify-content: center;
-align-items: center;
-background-color: rgba(0, 0, 0, 0.4);
+  position: fixed;
+  z-index: 101;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.4);
 `;
 
 export const ModalContent = styled.div`
@@ -176,13 +104,12 @@ export const ModalContent = styled.div`
   border-radius: 1vh;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   background-color: #232323;
-
-  padding: 20px; 
+  padding: 20px;
 `;
 
 export const ModalHeader = styled.div`
-display: flex;
-justify-content: flex-end;
+  display: flex;
+  justify-content: flex-end;
 `;
 
 export const ModalBody = styled.div`
@@ -212,14 +139,14 @@ export const ModalFooter = styled.div`
 `;
 
 export const CloseButton = styled.button`
-color: white;
-font-size: 30px;
-background: none;
-border: none;
-&:hover{
+  color: white;
+  font-size: 30px;
+  background: none;
+  border: none;
+  &:hover {
     color: black;
     cursor: pointer;
-}
+  }
 `;
 
 export const Section = styled.div`
@@ -229,4 +156,44 @@ export const Section = styled.div`
 /* Popup */
 
 export const NewGame = styled.div``;
->>>>>>> unstable
+
+/* Chatt */
+
+export const ChattInput = styled.input`
+  font-size: 1rem;
+  border: 1px solid lightgreen;
+  cursor: text;
+  outline: none;
+  padding: 12px 20px;
+  box-sizing: border-box;
+  background: #fafafa;
+  display: inline-flex;
+  align-items: center;
+  &:focus {
+    background-color: #e6ffff;
+  }
+`;
+
+export const ChattButton = styled.div`
+  text-align: center;
+  font-size: 1rem;
+  background-color: #1f8500;
+  border: 1px solid black;
+  outline-style: double;
+  outline-color: green;
+  color: white;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  margin: auto auto;
+`;
+
+export const ChattText = styled.div`
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+`;
+
+export const TurnBox = styled.div`
+  display: flex;
+  justify-content: space-around;
+`;
