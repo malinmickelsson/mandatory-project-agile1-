@@ -3,12 +3,8 @@ import { Link } from "@reach/router";
 import { ThemeProvider } from 'styled-components';
 import io from 'socket.io-client';
 
-<<<<<<< HEAD
 //import Popup from "./components/Global/Popup.jsx";
 //import Chatt from "./components/Global/Chatt.jsx";
-=======
-import Popup from "./components/Global/Popup.jsx";
->>>>>>> 15e7f774c020c9fa28f30db8f612b2cb16531974
 import Chatt from "./components/Global/Chatt.jsx";
 import MatchesList from "./components/Home/ActiveGames";
 
