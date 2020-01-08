@@ -3,8 +3,6 @@ import { Link } from "@reach/router";
 import { ThemeProvider } from "styled-components";
 
 //import Popup from "./components/Global/Popup.jsx";
-//import Chatt from "./components/Global/Chatt.jsx";
-import Chatt from "./components/Global/Chatt.jsx";
 import MatchesList from "./components/Home/ActiveGames";
 
 import {
@@ -40,7 +38,7 @@ const Home = () => {
         <Box>
           <NewGame>{/* <Popup page="home" /> */}</NewGame>
 
-          <Chatt />
+          
           <Button>Ny Match</Button>
         </Box>
         <Box>

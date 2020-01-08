@@ -1,44 +1,37 @@
 import React from "react";
 //import { Link } from "@reach/router";
+import { ChattText, ChattInput, ChattButton, TurnBox } from "./style";  // ChattMe, ChattUser,
+import io from 'socket.io-client'
 
+//=============== socket ===============//
+const chatFunction = () => {
+  let socket = io();
+  ('form').submit(function(e) {
+    e.preventDefault();
+    socket.emit('chat message', ('#m').val());
+    ('#m').val('');
+    return false;
+  })
+}
 
-import {
-  MainChatt, ChattBox, ChattText, ChattInput,
-  ChattMe, ChattUser, ChattButton, Span, InputDiv
-} from '../../style';
-
-
+//=============== chatten ===============//
 const Chatt = () => {
-
   return (
-    <MainChatt>
-      <ChattBox>
+    <div>
+      {/* <ChattMe> Min username :</ChattMe> 
+        <ChattText> här kommer meddelandet </ChattText>
+      <ChattUser> Min username :</ChattUser> 
+        <ChattText> här kommer meddelandet </ChattText> */}
 
-        <ChattText>
-          <ChattUser>
-            <Span>User : </Span>
-            <Span> Här kommer texten att vara</Span>
-          </ChattUser>
+      <ChattText> { chatFunction } </ChattText> */}
 
-          <ChattMe>
-            <Span> Här kommer din text</Span>
-          </ChattMe>
-
-          <ChattUser>
-            <Span>User : </Span>
-            <Span> Lorem text som ska vara här senare</Span>
-          </ChattUser>
-        </ChattText>
-
-        <InputDiv>
-          <ChattInput type="text" placeholder=" Write a message .."></ChattInput>
-          <ChattButton>Send</ChattButton>
-        </InputDiv>
-
-      </ChattBox>
-    </MainChatt>
+      <TurnBox>
+        <ChattInput type="text" placeholder=" Write a message .."></ChattInput>
+        <ChattButton>Send</ChattButton>
+      </TurnBox>
+    </div>
   );
-
 };
 
 export default Chatt;
+

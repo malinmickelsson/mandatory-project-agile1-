@@ -3,15 +3,14 @@
 //=======================================
 import styled, { createGlobalStyle } from "styled-components";
 
-
 export const GlobalStyle = createGlobalStyle`
   body {
-    background-color: ${props => (props.whiteColor ? 'rgb(61, 61, 61)' : 'white')};
+    background-color: ${props =>
+      props.whiteColor ? "rgb(61, 61, 61)" : "white"};
     font-family: ${props => props.theme.fontFamily};
     min-height: 100vh;
   }
 `;
-
 
 //nedan är bara exempelkod
 
@@ -57,9 +56,8 @@ export const Card = styled.div`
 
   height: 300px;
   width: 300px;
-	background: white;
-	border: solid grey 1px;
-	
+  background: white;
+  border: solid grey 1px;
 `;
 
 //_________ Header ____________
@@ -79,10 +77,72 @@ export const Links = styled.div`
 export const Box = styled.div`
   display: flex;
   margin: 0 auto;
-  a{
+  a {
     color: white;
     text-decoration: none;
   }
 `;
 
 export const NewGame = styled.div``;
+
+export const Ul = styled.ul``;
+export const Li = styled.li`
+  list-style-type: none;
+  text-align: left;
+`;
+
+export const TurnBox = styled.div`
+  display: flex;
+  justify-content: space-around;
+`;
+
+export const ChattButton = styled.div`
+  text-align: center;
+  font-size: 1rem;
+  background-color: #1f8500;
+  border: 1px solid black;
+  outline-style: double;
+  outline-color: green;
+  color: white;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  margin: auto auto;
+`;
+
+export const ChattInput = styled.input`
+  font-size: 1rem;
+  border: 1px solid lightgreen;
+  cursor: text;
+  outline: none;
+  padding: 12px 20px;
+  box-sizing: border-box;
+  background: #fafafa;
+  display: inline-flex;
+  align-items: center;
+  &:focus {
+    background-color: #e6ffff;
+  }
+`;
+
+export const ChattText = styled.div`
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+`;
+
+export const ChattMe = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  margin-left: 40%;
+  max-width: 60%;
+  padding: 5px;
+  /* flex-direction: row; */
+`;
+
+export const ChattUser = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  max-width: 60%;
+  padding: 5px;
+  /* flex-direction: row; */
+`;
