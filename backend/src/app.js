@@ -12,6 +12,10 @@ const res = require("./helpers/response");
 const rooms = [];
 const users = [];
 
+let chat = [
+  { message: "Hej Malin", sender: "Oscar" }
+];
+
 // Vid connection
 io.sockets.on("connection", (socket) => {
 
@@ -63,10 +67,20 @@ io.sockets.on("connection", (socket) => {
   })
 
   // Chatt-logik
+  socket.emit("messages", res.ok(chat));
+  socket.on("sendMessage", msg => {
+    const newMessage = {
+      message: msg,
+      sender: "Malin", // Skicka namn
+      
+    };
+    chat.push(newMessage);
+    socket.emit("messages", res.ok(chat))
+   // socket.emit("newMessage", res.ok(newMessage))
+  });
   // Starta match
   // Rund-baserad logik, koll på tid, validering av drag
   // Match klar, ta bort rum om det inte sker någon rematch
-  // MMR-adjustment
 
 });
 
