@@ -14,26 +14,26 @@ const users = [];
 // Vid connection
 io.sockets.on("connection", (socket) => {
 
-  //io.to(socket.id).emit("userInfo", "Hej");
   // Kollar vem spelaren är.
   socket.on("userId", data => {
-    if (data.id in users) {
+    if (_.find(users, ["id", data.id])) {
       socket.id = data.id;
+      console.log("Existing user connected. Id: " + data.id);
       socket.emit("userInfo", res.ok(users[data.id]));
     } else {
       const newUser = userHelper.newUser();
       socket.id = newUser.id;
-      users[newUser.id] = newUser;
-      console.log("user connected with id: " + newUser.id);
+      users.push(newUser);
+      console.log("New user connected. Id: " + newUser.id);
       socket.emit("userInfo", res.ok(newUser));
     }
   });
 
   socket.on("setName", name => {
-    users[socket.id].name = name;
-    console.log(users);
-
-    socket.emit("userInfo", res.ok(users[socket.id]))
+    let user = _.find(users, ["id", socket.id]);
+    console.log(user);
+    user.name = name;
+    socket.emit("userInfo", res.ok(user))
   })
 
   // Rum-logik
@@ -43,18 +43,16 @@ io.sockets.on("connection", (socket) => {
       socket.emit("roomCreated", res.reject())
     } else {
       const room = room.new(roomName, clientId, settings);
-      const roomId = room.id;
       rooms.push(room);
-      socket.join(roomId);
       socket.emit("roomCreated", res.ok(room));
     }
   });
   // Gå med i rum
   socket.on("joinRoom", ({ roomId }) => {
-    const room = rooms.find(x => x.id === roomId);
+    const room = _.find(rooms, ["id", roomId]);
     console.log(room);
     if (room.players.length < 2) {
-      socket.join(roomId);
+
       socket.emit("roomJoined", "Room joined");
     } else {
       console.log("tried")
