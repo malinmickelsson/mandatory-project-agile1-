@@ -48,6 +48,13 @@ const Chatt = () => {
     console.log(message);
   };
 
+  const handleKeyDown = e => {
+    if (e.key === 'Enter') {
+      socket.emit("sendMessage", message);
+      console.log(message);
+    }
+  }
+
   return (
     <form onSubmit={e => e.preventDefault()}>
       <div> 
@@ -60,6 +67,7 @@ const Chatt = () => {
           value={message}
           placeholder={"skriv i chatten"}
           onChange={handleChange}
+          onKeyDown={handleKeyDown}
         ></ChattInput>
 
         <ChattButton type="submit" onClick={handleSendMessage}>
