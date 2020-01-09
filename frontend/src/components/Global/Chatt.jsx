@@ -1,63 +1,73 @@
-import React, { Component } from "react";
-//import { Link } from "@reach/router";
-import { ChattText, ChattInput, ChattButton, TurnBox } from "./style";  // ChattMe, ChattUser,
-import io from 'socket.io-client'
+import React, { useState } from "react";
+//import { Link } from '@reach/router';
+import { ChattText, ChattInput, ChattButton, TurnBox } from "./style"; // ChattMe, ChattUser,
+import io from "socket.io-client";
+import { useEffect } from "react";
 
+let socket = io("https://b2690030.eu.ngrok.io");
 
-//=============== chatten ===============//
-export default class Chatt extends Component {
-  constructor(props) {
-    super(props);
+const Chatt = () => {
+  const [messages, setMessages] = useState([]);
+  const [message, setMessage] = useState("");
 
-    this.state = {
-      message: "",
-      error: ""
-    };
-  }
+  // messages = [
+  //   {
+  //     message: 'hej hej',
+  //     sender: 'Oscar'
+  //   }
+  // ]
 
-
-//=============== socket ===============//
-function () {
-  let socket = io();
-  ('form').submit(function(e) {
-    e.preventDefault();
-    socket.emit('chat message', ('#m').val());
-    ('#m').val('');
-    return false;
-  })
-}
-
+  useEffect( ()=> {
+    socket.on("messages", data => {
+      setMessages(data.data);
+      console.log(data);
+    });
   
-  render() { // eslint-disable-next-line 
-    const { message, error } = this.state;
+    socket.on("newMessage", data => {
+      const newMessages = [...messages, data.data];
+      console.log(messages);
+      setMessages(newMessages);
+      console.log(data);
+    });
+    // eslint-disable-next-line
+  }, [])
 
 
-    return (
-    <form onSubmit={this.handleSubmit}>
 
-      <ChattText> hej hej! *vinkar* </ChattText>
+  const handleChange = e => {
+    setMessage(e.currentTarget.value);
+  };
 
+  // const handleNewMessage = (message) => {
+  //   messages.push(message);
+  // }
+
+  const handleSendMessage = e => {
+    socket.emit("sendMessage", message);
+
+    console.log(message);
+  };
+
+  return (
+    <form onSubmit={e => e.preventDefault()}>
+      <div> 
+        {messages.map(message => {return <ChattText> {message.message}</ChattText> })}
+      </div>
       <TurnBox>
-        <ChattInput  
-          ref={input => {
-              this.textInput = input;
-            }}
-            type="text"
-            id="message"
-            value= 'message' //{message}
-            onChange={this.handleChange}
-            placeholder={"..."}>
-        </ChattInput>
+        <ChattInput
+          type="text"
+          id="message"
+          value={message}
+          placeholder={"skriv i chatten"}
+          onChange={handleChange}
+        ></ChattInput>
 
-        <ChattButton type="submit" >Send</ChattButton>
+        <ChattButton type="submit" onClick={handleSendMessage}>
+          Send
+        </ChattButton>
       </TurnBox>
     </form>
   );
 };
-}
 
-      // eslint-disable-next-line
-      {/* <ChattMe> Min username :</ChattMe> 
-        <ChattText> här kommer meddelandet </ChattText>
-      <ChattUser> Min username :</ChattUser> 
-        <ChattText> här kommer meddelandet </ChattText> */}
+export default Chatt;
