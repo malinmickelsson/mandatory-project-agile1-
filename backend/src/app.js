@@ -5,6 +5,7 @@ const _ = require("lodash");
 const PORT = process.env.port || 8000;
 
 const userHelper = require("./helpers/users");
+const roomHelper = require("./helpers/room");
 const res = require("./helpers/response");
 
 // Rumobjekt, ska ligga i databas senare. Inmemory just nu
@@ -16,7 +17,8 @@ io.sockets.on("connection", (socket) => {
 
   // Kollar vem spelaren är.
   socket.on("userId", data => {
-    if (_.find(users, ["id", data.id])) {
+    const user = _.find(users, ["id", data.id]);
+    if (user) {
       socket.id = data.id;
       console.log("Existing user connected. Id: " + data.id);
       socket.emit("userInfo", res.ok(users[data.id]));
@@ -38,22 +40,23 @@ io.sockets.on("connection", (socket) => {
 
   // Rum-logik
   // Skapa rum
-  socket.on("newRoom", ({ clientId, roomName, settings }) => {
-    if (roomName in rooms) {
+  socket.on("createRoom", ({ roomName, settings }) => {
+    const foundRoom = _.find(rooms, ["name", roomName]);
+    if (foundRoom) {
       socket.emit("roomCreated", res.reject())
     } else {
-      const room = room.new(roomName, clientId, settings);
-      rooms.push(room);
-      socket.emit("roomCreated", res.ok(room));
+      const newRoom = roomHelper.create(roomName, socket.id, settings);
+      rooms.push(newRoom);
+      socket.emit("roomCreated", res.ok(newRoom));
     }
   });
   // Gå med i rum
   socket.on("joinRoom", ({ roomId }) => {
-    const room = _.find(rooms, ["id", roomId]);
-    console.log(room);
-    if (room.players.length < 2) {
-
-      socket.emit("roomJoined", "Room joined");
+    const foundRoom = _.find(rooms, ["id", roomId]);
+    if (foundRoom && foundRoom.players.length < 2) {
+      roomHelper.join(foundRoom, socket.id);
+      
+      socket.emit("roomJoined", res.ok(foundRoom));
     } else {
       console.log("tried")
     }

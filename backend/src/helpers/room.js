@@ -1,6 +1,6 @@
 const uuid = require("uuid");
 
-const newRoom = (roomId, roomName, clientId, settings) => {
+const createRoom = (roomName, clientId, settings) => {
   const roomId = uuid();
   return {
     id: roomId,
@@ -13,11 +13,15 @@ const newRoom = (roomId, roomName, clientId, settings) => {
   }
 }
 
-const joinRoom = () => {
-  
+const joinRoom = (room, clientId) => {
+  room.players.push(clientId);
+}   
+
+const rejoinRoom = () => {
+
 }
 
 module.exports = {
-  new: newRoom,
+  create: createRoom,
   join: joinRoom,
 }
