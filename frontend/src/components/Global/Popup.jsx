@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react'; //, { useState }
 // import Home from "../../Home.jsx";
 import { Link } from "@reach/router";
 import { useFormState } from 'react-use-form-state';
@@ -19,7 +19,6 @@ const Popup = (props) => {
   }
   /*
   const [username, setUsername] = useState({ username: "" });
-
     function handleChange (e) {
         setUsername({username: e.target.value});
       }

@@ -1,16 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react'; //, useEffect
 import { Link } from "@reach/router";
 import { ThemeProvider } from 'styled-components';
-import io from 'socket.io-client';
+//import io from 'socket.io-client';
 
-//import Popup from "./components/Global/Popup.jsx";
+import Popup from "./components/Global/Popup.jsx";
 //import Chatt from "./components/Global/Chatt.jsx";
 import Chatt from "./components/Global/Chatt.jsx";
 import MatchesList from "./components/Home/ActiveGames";
 
-import {
-    Title, Subtitle, Links, Nav, Box, Button, NewGame, GlobalStyle
-} from './components/Global/style';
+import { Title, Subtitle, Links, Nav, Box, Button, NewGame, GlobalStyle } from './components/Global/style';
 
 const Home = () => {
 

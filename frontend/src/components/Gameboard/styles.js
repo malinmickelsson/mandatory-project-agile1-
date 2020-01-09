@@ -42,7 +42,7 @@ export const YourTur = Styled.p`
  color: lightgreen; //* active *//
 `;
 
-export const Ul= Styled.ul``;
+export const Ul = Styled.ul``;
 export const Li = Styled.li`
  list-style-type: none;
  text-align: left;
