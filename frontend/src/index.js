@@ -4,6 +4,7 @@ import { Router, Link } from "@reach/router";
 import Home from './Home.jsx';
 
 import ChessBoard from './components/Gameboard/ChessBoard';
+import Lobby from './components/Lobby/Room';
 
 
 const Index = ({ children }) => (
@@ -12,6 +13,7 @@ const Index = ({ children }) => (
       <Home path="/" />
       <Dashboard path="dashboard" />
       <ChessBoard path="/chessboard" />
+      <Lobby path="Lobby" />
       <NotFound default />
     </Router>
   </div>

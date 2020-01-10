@@ -4,6 +4,7 @@ import { Link } from "@reach/router";
 import Chessboard from "chessboardjsx";
 import GameStatusHub from "./GameStatusHub";
 //import { roughSquare } from "./Rough";
+
 import { ThemeProvider } from 'styled-components';
 import Chess from 'chess.js';
 
@@ -153,4 +154,3 @@ function GameBoard() {
 }
 
 export default GameBoard;
-
