@@ -1,9 +1,7 @@
-const uuid = require("uuid");
-
-const newUser = (name) => {
+const newUser = (id) => {
   return {
-    id: uuid(),
-    name: name || "new player",
+    id: id,
+    name: "new player",
     currentRoom: null
   }
 }

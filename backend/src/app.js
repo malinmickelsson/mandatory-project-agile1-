@@ -12,21 +12,24 @@ const res = require("./helpers/response");
 const rooms = [];
 const users = [];
 
+// Temp channels
 let chat = [];
+let game = 
 
 // Vid connection
 io.sockets.on("connection", (socket) => {
 
   // Kollar vem spelaren är.
-  socket.on("userId", data => {
-    const user = _.find(users, ["id", data.id]);
+  socket.on("userId", id => {
+    console.log(id);
+    const user = _.find(users, ["id", id]);
+    console.log(user);
     if (user) {
-      socket.id = data.id;
-      console.log("Existing user connected. Id: " + data.id);
+      socket.id = id;
+      console.log("Existing user connected. Id: " + socket.id);
       socket.emit("userInfo", res.ok(user));
     } else {
-      const newUser = userHelper.newUser();
-      socket.id = newUser.id;
+      const newUser = userHelper.newUser(socket.id);
       users.push(newUser);
       console.log("New user connected. Id: " + newUser.id);
       socket.emit("userInfo", res.ok(newUser));
@@ -42,29 +45,45 @@ io.sockets.on("connection", (socket) => {
 
   // Rum-logik
   // Skapa rum
-  socket.on("createRoom", ({ roomName, settings }) => {
+  socket.on("createRoom", data => {
+    console.log(data);
+    const { color, roomName, clientId } = data;
     const foundRoom = _.find(rooms, ["name", roomName]);
     console.log(foundRoom);
     if (foundRoom) {
       socket.emit("roomCreated", res.reject())
     } else {
-      const newRoom = roomHelper.create(roomName, socket.id, settings);
+      const newRoom = roomHelper.create(roomName, clientId, color);
       rooms.push(newRoom);
       console.log(rooms);
       socket.emit("roomCreated", res.ok(newRoom));
+      console.log(roomHelper.filtered(rooms));
+      socket.emit("roomList", res.ok(roomHelper.filtered(rooms)));
     }
   });
+
   // Gå med i rum
-  socket.on("joinRoom", ({ roomId }) => {
+  socket.on("joinRoom", ({ roomId, clientId }) => {
     const foundRoom = _.find(rooms, ["id", roomId]);
-    if (foundRoom && foundRoom.players.length < 2 && !_.includes(foundRoom.players, socket.id)) {
+    console.log(foundRoom);
+    if (foundRoom && clientId !== foundRoom.owner) {
       roomHelper.join(foundRoom, socket.id);
-      
       socket.emit("roomJoined", res.ok(foundRoom));
     } else {
       res.reject();
     }
   })
+
+  // Skickar en lista på rummen
+  socket.on("getRoomList", () => {
+    socket.emit("roomList", res.ok(roomHelper.filtered(rooms)));
+  });
+
+  // Skickar antalet användare på servern
+  socket.on("getUserCount", () => {
+    socket.emit("userCount", res.ok(users.length));
+  });
+
   // Chatt-logik
   // Skriva om och koppla baserat på vilket rum man är i
   socket.emit("messages", res.ok(chat));
