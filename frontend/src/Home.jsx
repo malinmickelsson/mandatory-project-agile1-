@@ -1,17 +1,25 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from "react"; //, useEffect
 import { Link } from "@reach/router";
-import { ThemeProvider } from 'styled-components';
-import io from 'socket.io-client';
-
+import { ThemeProvider } from "styled-components";
+//import io from 'socket.io-client';
 import Popup from "./components/Global/Popup.jsx";
-import Chatt from "./components/Global/Chatt.jsx";
 import MatchesList from "./components/Home/ActiveGames";
 
 import {
-    Title, Subtitle, Links, Nav, Box, Button, NewGame, GlobalStyle
-} from './components/Global/style';
+  Title,
+  Subtitle,
+  Links,
+  Nav,
+  Box,
+  Button,
+  NewGame,
+  GlobalStyle
+} from "./components/Global/style";
 
 const Home = () => {
+  const [newGame, setNewGame] = useState(false);
+  const [username, setUsername] = useState("");
+  const [result, setResult] = useState("new player v");
 
     const [newGame, setNewGame] = useState(false);
     const [username, setUsername] = useState("");
@@ -47,22 +55,29 @@ const Home = () => {
 
     }, []);
 
+  //     socket.on("userInfo", (res) => {
+  //         console.log(res.data.name);
+  //         setResult(res.data.name)
+  //     })
+  // }, []);
 
     // localStorage.removeItem('userid');
 
     // // let tempName = "malin";
     // socket.emit("setName", username);
 
+  function popupNewGame() {
+    setNewGame(true);
+  }
 
+  function handleChange(e) {
+    setUsername(e.target.value);
+  }
 
-
-
-    function popupNewGame() {
-        setNewGame(true);
-    }
-
-    function handleChange(e) {
-        setUsername(e.target.value);
+  function handleSubmit(e) {
+    e.preventDefault();
+    if (username.length) {
+      setResult(username);
     }
 
     function handleSubmit(e) {

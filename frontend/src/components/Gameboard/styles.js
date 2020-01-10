@@ -36,13 +36,25 @@ export const Wrapper = Styled.div`
 export const OppTime = Styled.span` font-size: 3rem;`;
 export const OppTur = Styled.p``;
 export const Txt = Styled.p``;
+export const TxtTurn = Styled.h3`color: lightgreen`;
+export const Txtcolor = Styled.h3`color: red`;
 export const YourTime = Styled.span`font-size: 3rem;`;
 
 export const YourTur = Styled.p`
- color: lightgreen; //* active *//
+  //* active *//
 `;
 
-export const Ul= Styled.ul``;
+export const DragHistory = Styled.ul`
+ height: 80px;
+ overflow: scroll;
+ text-align: center;
+`;
+
+export const MoveBox = Styled.li`
+ list-style-type: none;
+`;
+
+export const Ul = Styled.ul``;
 export const Li = Styled.li`
  list-style-type: none;
  text-align: left;
@@ -63,9 +75,9 @@ box-sizing: border-box;
 background: #fafafa;
 display: inline-flex;
 align-items: center;
-&:focus{
-  background-color:  #e6ffff;
-}
+  &:focus{
+    background-color:  #e6ffff;
+  }
 `;
 
 export const ChattButton = Styled.div`
