@@ -1,9 +1,15 @@
-import React from 'react'
+import React from 'react';
 import Chatt from '../Global/Chatt'
 
-import { StatusList, Wrapper, OppTime, OppTur, YourTime, YourTur, Txt } from './styles'; // ChattInput, ChattButton, TurnBox, Ul, Li
+import {
+  StatusList, Wrapper, OppTime, OppTur, YourTime,
+  YourTur, Txt, ChattInput, ChattButton, TurnBox, Ul, Li,
+  DragHistory, MoveBox
+} from './styles';
 
-const GameStatusHub = () => {
+
+const GameStatusHub = (props) => {
+  let history = props.dragHistory;
 
   return (
     <StatusList>
@@ -14,7 +20,12 @@ const GameStatusHub = () => {
       </Wrapper>
 
       <Wrapper>
-        <Txt>Moves-View</Txt>
+        <Txt>Drag-View</Txt>
+        <DragHistory>
+          {history.map((drag, idx) => {
+            return <MoveBox key={idx}>{drag}</MoveBox>
+          })}
+        </DragHistory>
       </Wrapper>
 
       <Wrapper>
