@@ -3,7 +3,7 @@ import { ChattText, ChattInput, ChattButton, TurnBox } from "./style";
 import io from "socket.io-client";
 import { useEffect } from "react";
 
-let socket = io("https://b2690030.eu.ngrok.io");
+let socket = io("https://ba19aba7.eu.ngrok.io");
 
 const Chatt = () => {
   const [messages, setMessages] = useState([]);
@@ -30,7 +30,7 @@ const Chatt = () => {
 
   // const handleNewMessage = (message) => {
   //   messages.push(message);
-  
+
   // }
 
   const handleSendMessage = e => {
