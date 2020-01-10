@@ -5,6 +5,7 @@ import Chessboard from "chessboardjsx";
 import GameStatusHub from "./GameStatusHub";
 import { ThemeProvider } from 'styled-components';
 import Chess from 'chess.js';
+import io from 'socket.io-client';
 
 import {
   Boardscontainer, Body, TitleBoard, Txt, YourTur,
@@ -83,12 +84,22 @@ function SchackBoard(props) {
     );
 }
 
+
+
+
+
+
+
 function GameBoard() {
     const [fen, updateFen] = useState('start'); // str with info of all position
     const [dragHistory, updateDragHistory] = useState([]);
     const [colorTurn, updateColorTurn] = useState('White');
-    const [status, updateStatus] = useState('');
+		const [status, updateStatus] = useState('');
+		
+		/** socket **/
+		let socket = io('https://ba19aba7.eu.ngrok.io'); // socket = Oscars server
 
+		
     //** Only Allow Legal Moves **// 
     const onDrop = ({ sourceSquare, targetSquare }) => {
         // see if the move is legal
@@ -124,7 +135,12 @@ function GameBoard() {
             updateStatus('Game over, drawn position');
         }
 
-        updateFen(chess.fen());
+				updateFen(chess.fen());
+				
+				/** socket **/
+				socket.emit('fen', fen); //skickar den nya fen till Oscars server
+				console.log('skickar fen till servern', fen);
+				
         const movestr = move.color + move.piece + ' moved: ' + move.from + '-' + move.to;
         const newhis = [...dragHistory, movestr];
         updateDragHistory(newhis);
