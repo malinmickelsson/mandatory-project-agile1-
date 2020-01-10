@@ -3,17 +3,14 @@
 //=======================================
 import styled, { createGlobalStyle } from "styled-components";
 
-
 export const GlobalStyle = createGlobalStyle`
   body {
-    background-color: ${props => (props.whiteColor ? 'rgb(61, 61, 61)' : 'white')};
+    background-color: ${props =>
+      props.whiteColor ? "rgb(61, 61, 61)" : "white"};
     font-family: ${props => props.theme.fontFamily};
     min-height: 100vh;
   }
 `;
-
-
-//nedan är bara exempelkod
 
 //_________ text ____________
 export const Title = styled.h1`
@@ -54,12 +51,10 @@ export const Card = styled.div`
   padding: 2.5rem;
   border-radius: 5rem;
   overflow: hidden;
-
   height: 300px;
   width: 300px;
-	background: white;
-	border: solid grey 1px;
-	
+  background: white;
+  border: solid grey 1px;
 `;
 
 //_________ Header ____________
@@ -79,10 +74,126 @@ export const Links = styled.div`
 export const Box = styled.div`
   display: flex;
   margin: 0 auto;
-  a{
+  a {
     color: white;
     text-decoration: none;
   }
 `;
 
+/* Popup */
+
+export const Modal = styled.div`
+  position: fixed;
+  z-index: 101;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.4);
+`;
+
+export const ModalContent = styled.div`
+  width: 40%;
+  min-height: 25vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-radius: 1vh;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  background-color: #232323;
+  padding: 20px;
+`;
+
+export const ModalHeader = styled.div`
+  display: flex;
+  justify-content: flex-end;
+`;
+
+export const ModalBody = styled.div`
+  color: white;
+  text-align: center;
+  font-size: 20px;
+  width: 100%;
+  // height: 18vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border: 1px solid black;
+`;
+
+export const ModalFooter = styled.div`
+  color: white;
+  text-align: center;
+  font-size: 20px;
+  width: 100%;
+  // height: 18vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border: 1px solid black;
+`;
+
+export const CloseButton = styled.button`
+  color: white;
+  font-size: 30px;
+  background: none;
+  border: none;
+  &:hover {
+    color: black;
+    cursor: pointer;
+  }
+`;
+
+export const Section = styled.div`
+  padding: 20px;
+`;
+
+/* Popup */
+
 export const NewGame = styled.div``;
+
+/* Chatt */
+
+export const ChattInput = styled.input`
+  font-size: 1rem;
+  border: 1px solid lightgreen;
+  cursor: text;
+  outline: none;
+  padding: 12px 20px;
+  box-sizing: border-box;
+  background: #fafafa;
+  display: inline-flex;
+  align-items: center;
+  &:focus {
+    background-color: #e6ffff;
+  }
+`;
+
+export const ChattButton = styled.div`
+  text-align: center;
+  font-size: 1rem;
+  background-color: #1f8500;
+  border: 1px solid black;
+  outline-style: double;
+  outline-color: green;
+  color: white;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  margin: auto auto;
+`;
+
+export const ChattText = styled.div`
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+`;
+
+export const TurnBox = styled.div`
+  display: flex;
+  justify-content: space-around;
+`;
