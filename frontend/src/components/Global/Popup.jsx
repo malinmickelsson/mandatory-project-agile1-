@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 // import Home from "../../Home.jsx";
-import { Link } from "@reach/router";
+import { Link, navigate } from "@reach/router";
 import { useFormState } from 'react-use-form-state';
 
 import {
@@ -9,31 +9,47 @@ import {
 
 const Popup = (props) => {
 
-  // const [modal, setModal] = useState(false);
   // const [modalCancel, setModalCancel] = useState(false);
   const [formState, { text, number, radio }] = useFormState();
+
 
   function closeModal() {
     // setModalCancel(true);
     props.setNewGame(false);
   }
-  /*
-  const [username, setUsername] = useState({ username: "" });
-
-    function handleChange (e) {
-        setUsername({username: e.target.value});
-      }
-  */
 
   function handleSubmit(e) {
     e.preventDefault();
     console.log("submit clicked");
+    console.log(formState.values);
+
+    let fs = formState.values;
+
+
+    if (fs.color.length && fs.roomName.length && fs.time.length) { // validation
+      const payload = {
+        ...formState.values,
+        clientId: localStorage.getItem("userid")
+      }
+      props.socket.emit("createRoom", payload);
+      console.log("Sent" + formState.values);
+
+    } else {
+      alert("Error: missing data");
+    }
+
   }
 
+  useEffect(() => {
+    props.socket.on("roomCreated", res => {
+      if (res.ok) {
+        navigate(`/game/${res.data.id}`)
+      }
+    });
+  }, []);
 
-  console.log(formState.values);
 
-  
+
   return (
     <>
       <Modal>
@@ -43,7 +59,7 @@ const Popup = (props) => {
               <CloseButton onClick={closeModal}>&times;</CloseButton>
             </ModalHeader>
             <ModalBody>
-            <form onSubmit={handleSubmit}>
+              <form onSubmit={handleSubmit}>
                 <Section>
                   <span>Choose color : </span>
                   <br />
@@ -54,7 +70,7 @@ const Popup = (props) => {
                 <Section>
                   <span>Game name</span>
                   <br />
-                  <input type="text" name="gametime" {...text("gamename")} />
+                  <input type="text" name="gametime" {...text("roomName")} />
                 </Section>
 
                 <Section>
@@ -65,15 +81,15 @@ const Popup = (props) => {
 
                 <Section>
                   <button type="submit">Creat Game</button>
-                  <Link to="Lobby">Lobby </Link>
+                  <Link to="RoomList">RoomList </Link>
                 </Section>
-                </form>
+              </form>
             </ModalBody>
 
-              <ModalFooter>
-                <span>Footer</span>
-              </ModalFooter>
-            
+            <ModalFooter>
+              <span>Footer</span>
+            </ModalFooter>
+
           </ModalContent>
           : null}
 

@@ -15,29 +15,40 @@ const Home = () => {
 
     const [newGame, setNewGame] = useState(false);
     const [username, setUsername] = useState("");
-    const [result, setResult] = useState("new player v");
+    const [result, setResult] = useState("");
+    const [login, setLogin] = useState(false);
+
+    const socket = io("https://ba19aba7.eu.ngrok.io");
+
+    socket.on("connect", () => {
+        console.log("connected");
+    });
 
 
 
-    // const socket = io("https://f12a3fd0.eu.ngrok.io");
+    useEffect(() => {
 
-    // socket.on("connect", () => {
-    //     console.log("connected");
-    // });
+        socket.on("userInfo", (res) => {
+            console.log(res.data);
+            localStorage.setItem('userid', res.data.id);
+        });
+
+        if (localStorage.getItem('userid')) {
+            socket.emit("userId", localStorage.getItem('userid'));
+            console.log("userid is allready in localstorage");
+        } else {
+            socket.emit("userId", "");
+            console.log("Create new userid in localstorage");
+        }
+
+        setResult(localStorage.getItem('userid'));
+
+        //  det jag får tbx från userid ska ligga i localstorage
+
+    }, []);
 
 
-    // useEffect(() => {
-    //     let userId = "temp"
-    //     socket.emit("userId", userId);
-
-    //     socket.on("userInfo", (res) => {
-    //         console.log(res.data.name);
-    //         setResult(res.data.name)
-    //     })
-    // }, []);
-
-
-
+    // localStorage.removeItem('userid');
 
     // // let tempName = "malin";
     // socket.emit("setName", username);
@@ -57,19 +68,21 @@ const Home = () => {
     function handleSubmit(e) {
         e.preventDefault();
         if (username.length) {
-            setResult(username)
+            // setResult(username)
+            setLogin(true);
         }
     }
 
-    // console.log(username);
-    // console.log(result);
 
     console.log(result);
-
+    console.log(localStorage.getItem('userid'));
+    console.log(socket.on("get"));
+    
+    let vault = localStorage.getItem('userid');
 
     return (
         <ThemeProvider theme={{ fontFamily: 'Merriweather, serif' }}>
-            {result !== "new player" ?
+            {result !== "" ?
                 <React.Fragment>
                     <Nav>
                         <Box>
@@ -89,11 +102,11 @@ const Home = () => {
                         <Chatt />
                         <Button onClick={popupNewGame}>Ny Match</Button>
                         {newGame ?
-                            <Popup page="newGame" setNewGame={setNewGame} />
+                            <Popup page="newGame" setNewGame={setNewGame} socket={socket} vault={vault} />
                             : null}
                     </Box>
                     <Box>
-                        <MatchesList />
+                        <MatchesList socket={socket} />
                     </Box>
                     <GlobalStyle whiteColor />
                 </React.Fragment>

@@ -38,7 +38,8 @@ function SchackBoard() {
     );
 }
 
-function GameBoard() {
+function GameBoard(props) {
+    console.log(props.gameId)
     return (
         <ThemeProvider theme={{ fontFamily: 'Merriweather, serif' }}>
             <React.Fragment>
