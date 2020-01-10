@@ -1,62 +1,54 @@
 //**------Lediga matcher-Box-----**//
-import React from "react";
-import { ListBox, GlobalStyle } from "./style";
+import React, { useState, useEffect } from 'react';
+import { ListBox, GlobalStyle } from './style';
 
-const MatchesList = () => {
-  let list = [
-    {
-      id: 1,
-      match: "Avvy",
-      antal: 1.2,
-      typ: "standar"
-    },
-    {
-      id: 2,
-      match: "Dennis",
-      antal: 1.2,
-      typ: "standard"
-    },
-    {
-      id: 3,
-      match: "Filip",
-      antal: 1.2,
-      typ: "standard"
-    },
-    {
-      id: 4,
-      match: "Avvy",
-      antal: 1.2,
-      typ: "standard"
+
+const MatchesList = (props) => {
+
+    const [list, setList] = useState([]);
+
+    useEffect(() => {
+        props.socket.on("roomList", res => {
+            console.log(res);
+            setList(res.data);
+        })
+        props.socket.on("roomJoined", res => {
+            // navigate till spel
+        })
+        props.socket.emit("getRoomList", "");
+    }, []);
+
+
+    function handleJoin(id) {
+        props.socket.emit("joinRoom", "");
+            // navigate(`/game/${id}`)
     }
-  ];
-
-  return (
-    <ListBox>
-      <table>
-        <thead>
-          <tr>
-            <th>Rank</th>
-            <th>Match</th>
-            <th>Antal</th>
-            <th>Typ</th>
-          </tr>
-        </thead>
-        <tbody>
-          {Object.values(list).map((value, index) => {
-            console.log(value);
-            return (
-              <tr key={index}>
-                {Object.values(value).map(key => {
-                  return <td>{key}</td>;
-                })}
-              </tr>
-            );
-          })}
-        </tbody>
-      </table>
-      <GlobalStyle />
-    </ListBox>
-  );
-};
+    
+    return (
+        <ListBox>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Namn</th>
+                        <th>Spelare</th>
+                        <th>Välj match</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {list.map((value) => {
+                        return (
+                            <tr key={value.id}>
+                                <td>{value.name}</td>
+                                <td>{value.owner}</td>
+                                <td><button onClick={() => handleJoin(value.id)}>Joina</button></td>
+                            </tr>
+                        );
+                    })}
+                </tbody>
+            </table>
+            <GlobalStyle />
+        </ListBox>
+    );
+}
 
 export default MatchesList;
