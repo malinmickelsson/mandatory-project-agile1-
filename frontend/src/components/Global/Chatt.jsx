@@ -1,21 +1,27 @@
-import React, { useState } from "react";
-import { ChattText, ChattInput, ChattButton, TurnBox } from "./style";
-import io from "socket.io-client";
-import { useEffect } from "react";
+import React, { useState } from 'react';
+import { ChattText, ChattInput, ChattButton, TurnBox } from './style';
+import io from 'socket.io-client';
+import { useEffect } from 'react';
 
-let socket = io("https://ba19aba7.eu.ngrok.io");
+let socket = io('https://ba19aba7.eu.ngrok.io');
 
 const Chatt = () => {
+
+  // message {
+  //   message: 'message',
+  //   sender: 'sender' //'Malin för tillfället'
+  // }
+
   const [messages, setMessages] = useState([]);
-  const [message, setMessage] = useState("");
+  const [message, setMessage] = useState('');
 
   useEffect(() => {
-    socket.on("messages", data => {
+    socket.on('messages', data => {
       setMessages(data.data);
       console.log(data);
     });
 
-    socket.on("newMessage", data => {
+    socket.on('newMessage', data => {
       const newMessages = [...messages, data.data];
       console.log(messages);
       setMessages(newMessages);
@@ -28,18 +34,14 @@ const Chatt = () => {
     setMessage(e.currentTarget.value);
   };
 
-  // const handleNewMessage = (message) => {
-  //   messages.push(message);
-
-  // }
-
   const handleSendMessage = e => {
-    socket.emit("sendMessage", message);
-    console.log(message);
+    socket.emit('sendMessage', message);
+    console.log('new message: ', message);
+    setMessage('');
   };
 
   const handleKeyDown = e => {
-    if (e.key === "Enter") {
+    if (e.key === 'Enter') {
       handleSendMessage();
     }
   };
@@ -53,15 +55,15 @@ const Chatt = () => {
       </div>
       <TurnBox>
         <ChattInput
-          type="text"
-          id="message"
+          type='text'
+          id='message'
           value={message}
-          placeholder={"skriv i chatten"}
+          placeholder={'skriv i chatten'}
           onChange={handleChange}
           onKeyDown={handleKeyDown}
         ></ChattInput>
 
-        <ChattButton type="submit" onClick={handleSendMessage}>
+        <ChattButton type='submit' onClick={handleSendMessage}>
           Send
         </ChattButton>
       </TurnBox>

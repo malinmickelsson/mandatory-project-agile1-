@@ -3,17 +3,12 @@ import React, { useState } from 'react';
 import { Link } from "@reach/router";
 import Chessboard from "chessboardjsx";
 import GameStatusHub from "./GameStatusHub";
-<<<<<<< HEAD
-=======
-//import { roughSquare } from "./Rough";
-
->>>>>>> 996df9b64a2fe24f6cab4b29c5f1451d891259cd
 import { ThemeProvider } from 'styled-components';
 import Chess from 'chess.js';
 
 import {
-    Boardscontainer, Body, TitleBoard, Txt, YourTur,
-    OppTur, TurnBox, Txtcolor, TxtTurn
+  Boardscontainer, Body, TitleBoard, Txt, YourTur,
+  OppTur, TurnBox, Txtcolor, TxtTurn
 } from './styles';
 import { Nav, Box, Title, GlobalStyle } from '../Global/style';
 
