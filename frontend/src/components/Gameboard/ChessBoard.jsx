@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 import { Link } from "@reach/router";
 import Chessboard from "chessboardjsx";
 import GameStatusHub from "./GameStatusHub";
-//import { roughSquare } from "./Rough";
 import { ThemeProvider } from 'styled-components';
 import Chess from 'chess.js';
 
@@ -62,7 +61,6 @@ function SchackBoard(props) {
                 id="boardscontainer"
                 orientation="black"
                 width={420}
-                //roughSquare={roughSquare}
                 position={props.fen} //fen update piece position
                 boardStyle={{
                     borderRadius: "5px",
@@ -100,6 +98,7 @@ function GameBoard() {
             promotion: "q" // always promote to a queen for example simplicity
         });
         //console.log(move);
+        updateStatus('');
 
         // illegal move
         if (move === null) {
@@ -108,6 +107,7 @@ function GameBoard() {
         }
         // who's turn is it?
         let color = chess.turn();
+        const opponent = chess.turn() === "b" ? "Black" : "White";
         if (color === 'b') {
             updateColorTurn('Black');
         } else if (color === 'w') {
@@ -115,14 +115,10 @@ function GameBoard() {
         }
         // checkmate?
         if (chess.in_checkmate() === true) {
-            updateStatus('Game over, ' + colorTurn + ' is in checkmate.');
+            updateStatus('Game over, ' + opponent + ' is in checkmate.');
         }// check?
         else if (chess.in_check() === true) {
-            /*  let nexColor = [...colorTurn, nexColor];
-             if (nexColor = 'Black' ? 'White' : 'Black') {
-                 updateColorTurn(nexColor);
-             } */
-            updateStatus(colorTurn + ' is in check');
+            updateStatus(opponent + ' is in check');
         }// draw?
         else if (chess.in_draw() === true) {
             updateStatus('Game over, drawn position');
