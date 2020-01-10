@@ -15,11 +15,12 @@ const createRoom = (roomName, clientId, settings) => {
 
 const joinRoom = (room, clientId) => {
   room.players.push(clientId);
+  try { 
+    console.log(this.users);
+  } catch (e) {
+    console.log(e)
+  }
 }   
-
-const rejoinRoom = () => {
-
-}
 
 module.exports = {
   create: createRoom,

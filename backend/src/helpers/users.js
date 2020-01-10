@@ -4,7 +4,7 @@ const newUser = (name) => {
   return {
     id: uuid(),
     name: name || "new player",
-    mmr: 1500
+    currentRoom: null
   }
 }
 
