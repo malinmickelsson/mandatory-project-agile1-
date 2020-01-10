@@ -1,6 +1,6 @@
-import React from 'react';
+import React from "react";
 import { Link } from "@reach/router";
-import './css/home.css';
+import "./css/home.css";
 /*
     player or AI
     duration
@@ -8,12 +8,6 @@ import './css/home.css';
 */
 
 const NewGame = () => {
-
-
-    return (
-        <div className="container">
-            
-        </div>
-    );
-}
-export default NewGame
+  return <div className="container"></div>;
+};
+export default NewGame;
