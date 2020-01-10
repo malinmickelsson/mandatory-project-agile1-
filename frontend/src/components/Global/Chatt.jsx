@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-//import { Link } from '@reach/router';
-import { ChattText, ChattInput, ChattButton, TurnBox } from "./style"; // ChattMe, ChattUser,
+import { ChattText, ChattInput, ChattButton, TurnBox } from "./style";
 import io from "socket.io-client";
 import { useEffect } from "react";
 
@@ -10,19 +9,12 @@ const Chatt = () => {
   const [messages, setMessages] = useState([]);
   const [message, setMessage] = useState("");
 
-  // messages = [
-  //   {
-  //     message: 'hej hej',
-  //     sender: 'Oscar'
-  //   }
-  // ]
-
-  useEffect( ()=> {
+  useEffect(() => {
     socket.on("messages", data => {
       setMessages(data.data);
       console.log(data);
     });
-  
+
     socket.on("newMessage", data => {
       const newMessages = [...messages, data.data];
       console.log(messages);
@@ -30,9 +22,7 @@ const Chatt = () => {
       console.log(data);
     });
     // eslint-disable-next-line
-  }, [])
-
-
+  }, []);
 
   const handleChange = e => {
     setMessage(e.currentTarget.value);
@@ -40,25 +30,26 @@ const Chatt = () => {
 
   // const handleNewMessage = (message) => {
   //   messages.push(message);
+  
   // }
 
   const handleSendMessage = e => {
     socket.emit("sendMessage", message);
-
     console.log(message);
   };
 
   const handleKeyDown = e => {
-    if (e.key === 'Enter') {
-      socket.emit("sendMessage", message);
-      console.log(message);
+    if (e.key === "Enter") {
+      handleSendMessage();
     }
-  }
+  };
 
   return (
     <form onSubmit={e => e.preventDefault()}>
-      <div> 
-        {messages.map(message => {return <ChattText> {message.message}</ChattText> })}
+      <div>
+        {messages.map(message => {
+          return <ChattText> {message.message}</ChattText>;
+        })}
       </div>
       <TurnBox>
         <ChattInput
