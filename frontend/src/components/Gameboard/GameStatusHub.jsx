@@ -1,11 +1,14 @@
-import React from 'react'
+import React from 'react';
+//import Chess from 'chess.js';
 
 import {
   StatusList, Wrapper, OppTime, OppTur, YourTime,
-  YourTur, Txt, ChattInput, ChattButton, TurnBox, Ul, Li
+  YourTur, Txt, ChattInput, ChattButton, TurnBox, Ul, Li,
+  DragHistory, MoveBox
 } from './styles';
 
-const GameStatusHub = () => {
+const GameStatusHub = (props) => {
+  let history = props.dragHistory;
 
   return (
     <StatusList>
@@ -16,6 +19,11 @@ const GameStatusHub = () => {
       </Wrapper>
       <Wrapper>
         <Txt>Drag-View</Txt>
+        <DragHistory>
+          {history.map((drag, idx) => {
+            return <MoveBox key={idx}>{drag}</MoveBox>
+          })}
+        </DragHistory>
       </Wrapper>
       <Wrapper>
         <Txt>Your Time</Txt>
