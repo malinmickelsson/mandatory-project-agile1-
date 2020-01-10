@@ -9,7 +9,7 @@ const Chatt = () => {
 
   // message {
   //   message: 'message',
-  //   sender: 'sender' //'Malin' för tillfället
+  //   sender: 'sender' //'Malin' för tillfället   
   // }
 
   const [messages, setMessages] = useState([]);

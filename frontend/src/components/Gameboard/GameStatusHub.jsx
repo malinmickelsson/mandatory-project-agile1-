@@ -2,9 +2,7 @@ import React from 'react';
 import Chatt from '../Global/Chatt'
 
 import {
-  StatusList, Wrapper, OppTime, OppTur, YourTime,
-  YourTur, Txt, ChattInput, ChattButton, TurnBox, Ul, Li,
-  DragHistory, MoveBox
+  StatusList, Wrapper, OppTime, OppTur, YourTime, YourTur, Txt, DragHistory, MoveBox
 } from './styles';
 
 
