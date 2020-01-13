@@ -4,10 +4,6 @@ import { useEffect } from 'react';
 
 const Chatt = (props) => {
   const { socket } = props;
-  // message {
-  //   message: 'message',
-  //   sender: 'sender' //'Malin' för tillfället   
-  // }
 
   const [messages, setMessages] = useState([]);
   const [message, setMessage] = useState('');
@@ -24,6 +20,10 @@ const Chatt = (props) => {
       setMessages(newMessages);
       console.log(data);
     });
+    return () => {
+      socket.off('messages');
+      socket.off('newMessage')
+		}
     // eslint-disable-next-line
   }, []);
 

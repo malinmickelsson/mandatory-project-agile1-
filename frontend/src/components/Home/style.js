@@ -1,6 +1,5 @@
-import Styled, { createGlobalStyle } from "styled-components";
+import Styled, { createGlobalStyle } from 'styled-components';
 
-//**------ActiveGames-style-----**//
 export const ListBox = Styled.div`
   width: 100%;
   padding: 30px;
@@ -14,7 +13,7 @@ export const GlobalStyle = createGlobalStyle`
   width: 100%;
   border-collapse: collapse;
     tr:nth-child(even) {
-        background-color: #383838;
+      background-color: #383838;
     }
     tr:hover {
       background: lightgreen;

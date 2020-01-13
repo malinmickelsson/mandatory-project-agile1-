@@ -1,6 +1,5 @@
-import React, { useEffect } from 'react'; //useState,
-// import Home from "../../Home.jsx";
-import { navigate } from "@reach/router";
+import React, { useEffect } from 'react';
+import { Link, navigate } from '@reach/router';
 import { useFormState } from 'react-use-form-state';
 
 import {
@@ -21,36 +20,39 @@ const Popup = (props) => {
 
   function handleSubmit(e) {
     e.preventDefault();
-    console.log("submit clicked");
+    console.log('submit clicked');
     console.log(formState.values);
 
     let fs = formState.values;
     if (fs.color.length && fs.roomName.length && fs.time.length) { // validation
       const payload = {
         ...formState.values,
-        clientId: localStorage.getItem("userid")
+        clientId: localStorage.getItem('userid')
       }
-      props.socket.emit("createRoom", payload);
-      console.log("Sent" + formState.values);
+      props.socket.emit('createRoom', payload);
+      console.log('Sent' + formState.values);
 
     } else {
-      alert("Error: missing data");
+      alert('Error: missing data');
     }
-
   }
 
   useEffect(() => {
-    props.socket.on("roomCreated", res => {
+    props.socket.on('roomCreated', res => {
       if (res.ok) {
         navigate(`/game/${res.data.id}`)
       }
     });
+
+    return () => {
+			props.socket.off('roomCreated');
+		}// eslint-disable-next-line
   }, []);
 
   return (
     <>
       <Modal>
-        {props.page === "newGame" ?
+        {props.page === 'newGame' ?
           <ModalContent>
             <ModalBody>
 
@@ -59,14 +61,17 @@ const Popup = (props) => {
                   <SubtitleGame>Game name</SubtitleGame>
                   <CloseButton onClick={closeModal}>&times;</CloseButton>
                 </ModalHeader>
+                
                 <Section>
                   <ChattInput type="text" name="gametime" {...text("roomName")} />
                 </Section>
+                
                 <Section>
                   <Subtitle>Choose color : </Subtitle>
                   <Bodytext>black <input {...radio('color', 'black')} /></Bodytext>
                   <Bodytext>white <input {...radio('color', 'white')} /></Bodytext>
                 </Section>
+                
                 <Section>
                   <ChattButton type="submit">Creat Game</ChattButton>
                 </Section>
@@ -77,12 +82,9 @@ const Popup = (props) => {
           : null}
       </Modal>
 
-      {props.page === "home" ?
-        <div className="popup-home-container">
-
-        </div>
-        :
-        null
+      {props.page === 'home' ?
+        <div className='popup-home-container'></div>
+        :null
       }
     </>
   );
