@@ -1,7 +1,6 @@
-import React, { useState } from "react"; //, useEffect
+import React, { useState, useEffect } from "react"; 
 import { Link } from "@reach/router";
 import { ThemeProvider } from "styled-components";
-//import io from 'socket.io-client';
 import Popup from "./components/Global/Popup.jsx";
 import MatchesList from "./components/Home/ActiveGames";
 
@@ -16,17 +15,12 @@ import {
   GlobalStyle
 } from "./components/Global/style";
 
-const Home = () => {
+const Home = (props) => {
   const [newGame, setNewGame] = useState(false);
   const [username, setUsername] = useState("");
-  const [result, setResult] = useState("new player v");
-
-    const [newGame, setNewGame] = useState(false);
-    const [username, setUsername] = useState("");
-    const [result, setResult] = useState("");
-    const [login, setLogin] = useState(false);
-
-    const socket = io("https://ba19aba7.eu.ngrok.io");
+  const [result, setResult] = useState("");
+  const [login, setLogin] = useState(false);
+	const { socket } = props;
 
     socket.on("connect", () => {
         console.log("connected");
@@ -35,7 +29,6 @@ const Home = () => {
 
 
     useEffect(() => {
-
         socket.on("userInfo", (res) => {
             console.log(res.data);
             localStorage.setItem('userid', res.data.id);
@@ -50,21 +43,7 @@ const Home = () => {
         }
 
         setResult(localStorage.getItem('userid'));
-
-        //  det jag får tbx från userid ska ligga i localstorage
-
     }, []);
-
-  //     socket.on("userInfo", (res) => {
-  //         console.log(res.data.name);
-  //         setResult(res.data.name)
-  //     })
-  // }, []);
-
-    // localStorage.removeItem('userid');
-
-    // // let tempName = "malin";
-    // socket.emit("setName", username);
 
   function popupNewGame() {
     setNewGame(true);
@@ -76,22 +55,14 @@ const Home = () => {
 
   function handleSubmit(e) {
     e.preventDefault();
-    if (username.length) {
+    if (username.length > 0) {
       setResult(username);
     }
-
-    function handleSubmit(e) {
-        e.preventDefault();
-        if (username.length) {
-            // setResult(username)
-            setLogin(true);
-        }
-    }
+	}
 
 
     console.log(result);
     console.log(localStorage.getItem('userid'));
-    console.log(socket.on("get"));
     
     let vault = localStorage.getItem('userid');
 
@@ -101,9 +72,7 @@ const Home = () => {
                 <React.Fragment>
                     <Nav>
                         <Box>
-                            <Link to="/"><Title>lichess Home</Title></Link>
-                            <Links><Link to="dashboard">Dashboard </Link></Links>
-                            <Links><Link to="/chessboard">Chessboard</Link></Links>
+                            <Link to="/"><Title>Chess home</Title></Link>
                         </Box>
                     </Nav>
 
@@ -111,10 +80,7 @@ const Home = () => {
                     <Box>
 
                         <NewGame>
-                            {/* <Popup page="home" /> */}
                         </NewGame>
-
-                        <Chatt />
                         <Button onClick={popupNewGame}>Ny Match</Button>
                         {newGame ?
                             <Popup page="newGame" setNewGame={setNewGame} socket={socket} vault={vault} />

@@ -1,12 +1,9 @@
 import React, { useState } from 'react';
 import { ChattText, ChattInput, ChattButton, TurnBox } from './style';
-import io from 'socket.io-client';
 import { useEffect } from 'react';
 
-let socket = io('https://ba19aba7.eu.ngrok.io');
-
-const Chatt = () => {
-
+const Chatt = (props) => {
+  const { socket } = props;
   // message {
   //   message: 'message',
   //   sender: 'sender' //'Malin' för tillfället   

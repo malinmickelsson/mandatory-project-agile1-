@@ -1,33 +1,26 @@
 import React from "react";
 import { render } from "react-dom";
-import { Router, Link } from "@reach/router";
+import { Router } from "@reach/router";
+import io from 'socket.io-client';
 import Home from './Home.jsx';
-
 import ChessBoard from './components/Gameboard/ChessBoard';
 import RoomList from './components/Lobby/RoomList';
 
 
-const Index = ({ children }) => (
+const Index = ({ children }) => {
+  const socket = io("http://localhost:8000");
+  return (
   <div>
     <Router>
-      <Home path="/" />
-      <Dashboard path="dashboard" />
-      <ChessBoard path="/game/:gameId" />
-      <RoomList path="RoomList" />
+      <Home socket={socket} path="/" />
+      <ChessBoard socket={socket} path="/game/:gameId" />
+      <RoomList socket={socket} path="RoomList" />
       <NotFound default />
     </Router>
   </div>
-);
+  )
+};
 
-
-const Dashboard = () => (
-  <div>
-    <h2>Dashboard</h2>
-    <Link to="/">Home</Link>
-    <br />
-    <br />
-  </div>
-);
 
 const NotFound = () => (
   <div>

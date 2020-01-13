@@ -5,7 +5,6 @@ import Chessboard from "chessboardjsx";
 import GameStatusHub from "./GameStatusHub";
 import { ThemeProvider } from 'styled-components';
 import Chess from 'chess.js';
-import io from 'socket.io-client';
 
 import {
   Boardscontainer, Body, TitleBoard, Txt, YourTur,
@@ -90,15 +89,13 @@ function SchackBoard(props) {
 
 
 
-function GameBoard() {
+function GameBoard(props) {
     const [fen, updateFen] = useState('start'); // str with info of all position
     const [dragHistory, updateDragHistory] = useState([]);
     const [colorTurn, updateColorTurn] = useState('White');
 		const [status, updateStatus] = useState('');
-		
-		/** socket **/
-		let socket = io('https://ba19aba7.eu.ngrok.io'); // socket = Oscars server
 
+		const { socket } = props;
 		
     //** Only Allow Legal Moves **// 
     const onDrop = ({ sourceSquare, targetSquare }) => {
@@ -156,7 +153,7 @@ function GameBoard() {
                 </Nav>
                 <Boardscontainer >
                     <SchackBoard fen={fen} colorTurn={colorTurn} onDrop={onDrop} status={status} />
-                    <GameStatusHub dragHistory={dragHistory} />
+                    <GameStatusHub dragHistory={dragHistory} socket={socket} />
                 </Boardscontainer>
                 <GlobalStyle whiteColor />
             </React.Fragment>

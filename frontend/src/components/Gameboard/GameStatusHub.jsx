@@ -2,7 +2,7 @@ import React from 'react';
 import Chatt from '../Global/Chatt'
 
 import {
-  StatusList, Wrapper, OppTime, OppTur, YourTime, YourTur, Txt, DragHistory, MoveBox
+  StatusList, Wrapper, Txt, DragHistory, MoveBox //OppTur, YourTur,
 } from './styles';
 
 
@@ -11,11 +11,6 @@ const GameStatusHub = (props) => {
 
   return (
     <StatusList>
-      <Wrapper>
-        <Txt>Opponent Time</Txt>
-        <OppTime>10:10</OppTime>
-        <OppTur></OppTur>
-      </Wrapper>
 
       <Wrapper>
         <Txt>Drag-View</Txt>
@@ -27,13 +22,7 @@ const GameStatusHub = (props) => {
       </Wrapper>
 
       <Wrapper>
-        <Txt>Your Time</Txt>
-        <YourTime>10:10</YourTime>
-        <YourTur>Your Turn</YourTur>
-      </Wrapper>
-
-      <Wrapper>
-        <Chatt />
+        <Chatt socket={props.socket} />
       </Wrapper>
   
     </StatusList>

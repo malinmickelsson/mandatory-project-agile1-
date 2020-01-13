@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react'; //useState,
 // import Home from "../../Home.jsx";
 import { Link, navigate } from "@reach/router";
 import { useFormState } from 'react-use-form-state';
@@ -45,7 +45,8 @@ const Popup = (props) => {
       if (res.ok) {
         navigate(`/game/${res.data.id}`)
       }
-    });
+
+    }); 
   }, []);
 
 
