@@ -116,7 +116,6 @@ export const ModalBody = styled.div`
   text-align: center;
   font-size: 20px;
   width: 100%;
-  height: 18vh;
   display: flex;
   justify-content: center;
   align-items: center;
