@@ -5,13 +5,8 @@ import Popup from './components/Global/Popup.jsx';
 import MatchesList from './components/Home/ActiveGames';
 
 import {
-	Title,
-	Subtitle,
-	Nav,
-	Box,
-	Button,
-	NewGame,
-	GlobalStyle
+	Title, Subtitle, Nav, Box, Button, NameBox,
+	NewGame, GlobalStyle, ChattButton, Bodytext, TurnBox
 } from './components/Global/style';
 
 const Home = (props) => {
@@ -22,7 +17,7 @@ const Home = (props) => {
 	useEffect(() => {
 		setUsername(localStorage.getItem('username'));
 
-	// eslint-disable-next-line
+		// eslint-disable-next-line
 	}, [])
 
 	function popupNewGame() {
@@ -45,8 +40,11 @@ const Home = (props) => {
 					<Box>
 						<Link to='/'><Title>Chess home</Title></Link>
 						<form onSubmit={handleSubmit}>
-							<input value={username} onChange={handleChange} type='text' />
-							<button type='submit'>Submit</button>
+							<TurnBox>
+								<Bodytext>Name </Bodytext>
+								<NameBox value={username} onChange={handleChange} type='text' />
+								<ChattButton type='submit'>Change</ChattButton>
+							</TurnBox>
 						</form>
 					</Box>
 				</Nav>
