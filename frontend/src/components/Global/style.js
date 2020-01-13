@@ -3,7 +3,7 @@ import styled, { createGlobalStyle } from 'styled-components';
 export const GlobalStyle = createGlobalStyle`
   body {
     background-color: ${props =>
-    props.whiteColor ? "rgb(61, 61, 61)" : "white"};
+      props.whiteColor ? 'rgb(61, 61, 61)' : 'white'};
     font-family: ${props => props.theme.fontFamily};
     min-height: 100vh;
   }
@@ -24,17 +24,9 @@ export const Subtitle = styled.h3`
   color: #ffe6ff;
 `;
 
-export const SubtitleGame = styled.h3`
-  font-size: 1.5rem;
-  margin: 0 20%;
-  padding: 0;
-  color: #ffe6ff;
-  flex: 1;
-`;
-
 export const Bodytext = styled.p`
-  font-size: 1.5rem;
-  color: white;
+  font-size: 1rem;
+  color: black;
 `;
 
 export const Button = styled.button`
@@ -95,14 +87,14 @@ export const Modal = styled.div`
 `;
 
 export const ModalContent = styled.div`
-  width: 30%;
-  min-height: 20vh;
+  width: 40%;
+  min-height: 25vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   border-radius: 1vh;
-  box-shadow: 0 4px 8px 0 white, 0 6px 20px 0 lightgreen;
-  background-color: rgba(84, 84, 84);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  background-color: #232323;
   padding: 20px;
 `;
 
@@ -119,17 +111,30 @@ export const ModalBody = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
+  border: 1px solid black;
+`;
+
+export const ModalFooter = styled.div`
+  color: white;
+  text-align: center;
+  font-size: 20px;
+  width: 100%;
+  // height: 18vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border: 1px solid black;
 `;
 
 export const CloseButton = styled.button`
   color: white;
   font-size: 30px;
   background: none;
-  margin-left: 20%;
   border: none;
-  padding: 0 50px;
   &:hover {
-    color: red;
+    color: black;
     cursor: pointer;
   }
 `;
