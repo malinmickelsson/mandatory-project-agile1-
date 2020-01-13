@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import { Link, navigate } from '@reach/router';
+import React, { useEffect, useState } from 'react';
+import { navigate } from '@reach/router';
 import { useFormState } from 'react-use-form-state';
 
 import {
@@ -9,31 +9,35 @@ import {
 } from './style';
 
 const Popup = (props) => {
-
-  // const [modalCancel, setModalCancel] = useState(false);
-  const [formState, { text, radio }] = useFormState();
+  const [name, setName] = useState("New Game");
+  const [radio, setRadio] = useState("black");
 
   function closeModal() {
-    // setModalCancel(true);
     props.setNewGame(false);
+  }
+
+  const handleOptionChange = e => {
+    console.log(e.currentTarget.value);
+    setRadio(e.currentTarget.value);
+  }
+
+  const handleNameChange = e => {
+    setName(e.currentTarget.value);
   }
 
   function handleSubmit(e) {
     e.preventDefault();
-    console.log('submit clicked');
-    console.log(formState.values);
 
-    let fs = formState.values;
-    if (fs.color.length && fs.roomName.length && fs.time.length) { // validation
+    if (name.length > 0) { // validation
       const payload = {
-        ...formState.values,
+        roomName: name,
+        color: radio,
         clientId: localStorage.getItem('userid')
       }
       props.socket.emit('createRoom', payload);
-      console.log('Sent' + formState.values);
 
     } else {
-      alert('Error: missing data');
+      console.log("Missing Data");
     }
   }
 
@@ -63,17 +67,17 @@ const Popup = (props) => {
                 </ModalHeader>
                 
                 <Section>
-                  <ChattInput type="text" name="gametime" {...text("roomName")} />
+                  <ChattInput type="text" name="gametime" value={name} onChange={handleNameChange} />
                 </Section>
                 
                 <Section>
                   <Subtitle>Choose color : </Subtitle>
-                  <Bodytext>black <input {...radio('color', 'black')} /></Bodytext>
-                  <Bodytext>white <input {...radio('color', 'white')} /></Bodytext>
+                  <Bodytext>black <input type="radio" value="black" onChange={handleOptionChange} checked={radio === "black"} /></Bodytext>
+                  <Bodytext>white <input type="radio" value="white" onChange={handleOptionChange} checked={radio === "white"} /></Bodytext>
                 </Section>
                 
                 <Section>
-                  <ChattButton type="submit">Creat Game</ChattButton>
+                  <ChattButton onClick={handleSubmit} type="submit">Creat Game</ChattButton>
                 </Section>
               </form>
 

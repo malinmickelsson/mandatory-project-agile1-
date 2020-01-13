@@ -22,9 +22,7 @@ const Home = (props) => {
 	useEffect(() => {
 		setUsername(localStorage.getItem('username'));
 
-		return () => {
-			socket.off('username');
-		}// eslint-disable-next-line
+	// eslint-disable-next-line
 	}, [])
 
 	function popupNewGame() {
