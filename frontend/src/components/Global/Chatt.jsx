@@ -32,7 +32,10 @@ const Chatt = (props) => {
   };
 
   const handleSendMessage = e => {
-    socket.emit('sendMessage', message);
+    socket.emit('sendMessage', {
+      msg: message,
+      roomId: props.roomId,
+    });
     console.log('new message: ', message);
     setMessage('');
   };

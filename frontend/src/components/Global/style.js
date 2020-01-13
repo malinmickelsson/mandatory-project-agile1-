@@ -1,4 +1,7 @@
-import styled, { createGlobalStyle } from 'styled-components';
+//=======================================
+// Bara globala styling-komponenter
+//=======================================
+import styled, { createGlobalStyle } from "styled-components";
 
 export const GlobalStyle = createGlobalStyle`
   body {
@@ -9,6 +12,7 @@ export const GlobalStyle = createGlobalStyle`
   }
 `;
 
+//_________ text ____________
 export const Title = styled.h1`
   font-size: 3rem;
   color: green;
@@ -37,6 +41,7 @@ export const Bodytext = styled.p`
   color: white;
 `;
 
+//_________ knappar ____________
 export const Button = styled.button`
   font-size: 1.3rem;
   background-color: #1f8500;
@@ -49,6 +54,7 @@ export const Button = styled.button`
   margin: auto auto;
 `;
 
+//_________ kort ____________
 export const Card = styled.div`
   padding: 2.5rem;
   border-radius: 5rem;
@@ -59,6 +65,7 @@ export const Card = styled.div`
   border: solid grey 1px;
 `;
 
+//_________ Header ____________
 export const Nav = styled.nav`
   height: 80px;
   min-width: 100%;
@@ -81,6 +88,7 @@ export const Box = styled.div`
   }
 `;
 
+//_________ Popup ____________
 export const Modal = styled.div`
   position: fixed;
   z-index: 101;
@@ -95,6 +103,7 @@ export const Modal = styled.div`
 `;
 
 export const ModalContent = styled.div`
+  position: relative;
   width: 30%;
   min-height: 20vh;
   display: flex;
@@ -108,7 +117,8 @@ export const ModalContent = styled.div`
 
 export const ModalHeader = styled.div`
   display: flex;
-  justify-content: flex-end;
+  align-items: center;
+  position: relative;
 `;
 
 export const ModalBody = styled.div`
@@ -116,18 +126,21 @@ export const ModalBody = styled.div`
   text-align: center;
   font-size: 20px;
   width: 100%;
+  // height: 18vh;
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
 `;
 
 export const CloseButton = styled.button`
+  position: absolute;
+  top: 10px;
+  right: 20px;
   color: white;
   font-size: 30px;
   background: none;
-  margin-left: 20%;
   border: none;
-  padding: 0 50px;
   &:hover {
     color: red;
     cursor: pointer;
@@ -140,6 +153,7 @@ export const Section = styled.div`
 
 export const NewGame = styled.div``;
 
+//_________ Chatt ____________
 export const ChattInput = styled.input`
   font-size: 1rem;
   border: 1px solid lightgreen;

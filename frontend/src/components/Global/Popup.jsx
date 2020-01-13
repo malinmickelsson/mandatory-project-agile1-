@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { navigate } from '@reach/router';
-import { useFormState } from 'react-use-form-state';
 
 import {
   Modal, ModalContent, ModalHeader, ModalBody, CloseButton,
@@ -60,10 +59,10 @@ const Popup = (props) => {
           <ModalContent>
             <ModalBody>
 
+            <CloseButton onClick={closeModal}>&times;</CloseButton>
               <form onSubmit={handleSubmit}>
                 <ModalHeader>
                   <SubtitleGame>Game name</SubtitleGame>
-                  <CloseButton onClick={closeModal}>&times;</CloseButton>
                 </ModalHeader>
                 
                 <Section>
