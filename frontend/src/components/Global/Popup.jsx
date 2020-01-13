@@ -3,15 +3,14 @@ import { Link, navigate } from '@reach/router';
 import { useFormState } from 'react-use-form-state';
 
 import {
-  Modal, ModalContent, ModalHeader, ModalBody, CloseButton,
-  Section, ChattButton, ChattInput, SubtitleGame, Bodytext,
-  Subtitle
+  Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, CloseButton, Section
 } from './style';
 
 const Popup = (props) => {
 
   // const [modalCancel, setModalCancel] = useState(false);
-  const [formState, { text, radio }] = useFormState();
+  const [formState, { text, number, radio }] = useFormState();
+
 
   function closeModal() {
     // setModalCancel(true);
@@ -24,6 +23,8 @@ const Popup = (props) => {
     console.log(formState.values);
 
     let fs = formState.values;
+
+
     if (fs.color.length && fs.roomName.length && fs.time.length) { // validation
       const payload = {
         ...formState.values,
@@ -43,7 +44,6 @@ const Popup = (props) => {
         navigate(`/game/${res.data.id}`)
       }
     });
-
     return () => {
 			props.socket.off('roomCreated');
 		}// eslint-disable-next-line
@@ -54,30 +54,41 @@ const Popup = (props) => {
       <Modal>
         {props.page === 'newGame' ?
           <ModalContent>
+            <ModalHeader>
+              <CloseButton onClick={closeModal}>&times;</CloseButton>
+            </ModalHeader>
             <ModalBody>
-
               <form onSubmit={handleSubmit}>
-                <ModalHeader>
-                  <SubtitleGame>Game name</SubtitleGame>
-                  <CloseButton onClick={closeModal}>&times;</CloseButton>
-                </ModalHeader>
-                
                 <Section>
-                  <ChattInput type="text" name="gametime" {...text("roomName")} />
+                  <span>Choose color : </span>
+                  <br />
+                  <span>black</span><input {...radio('color', 'black')} />
+                  <span>white</span><input {...radio('color', 'white')} />
                 </Section>
-                
+
                 <Section>
-                  <Subtitle>Choose color : </Subtitle>
-                  <Bodytext>black <input {...radio('color', 'black')} /></Bodytext>
-                  <Bodytext>white <input {...radio('color', 'white')} /></Bodytext>
+                  <span>Game name</span>
+                  <br />
+                  <input type='text' name='gametime' {...text('roomName')} />
                 </Section>
-                
+
                 <Section>
-                  <ChattButton type="submit">Creat Game</ChattButton>
+                  <span>Time</span>
+                  <br />
+                  <input type='number' placeholder='min...' name='time' {...number('time')} />
+                </Section>
+
+                <Section>
+                  <button type='submit'>Creat Game</button>
+                  <Link to='RoomList'>RoomList </Link>
                 </Section>
               </form>
-
             </ModalBody>
+
+            <ModalFooter>
+              <span>Footer</span>
+            </ModalFooter>
+
           </ModalContent>
           : null}
       </Modal>
@@ -89,5 +100,4 @@ const Popup = (props) => {
     </>
   );
 }
-
-export default Popup;
+export default Popup
