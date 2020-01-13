@@ -1,6 +1,5 @@
-import Styled from "styled-components";
+import Styled from 'styled-components';
 
-//**---------ChessBoard-style---------- **/
 export const Boardscontainer = Styled.div`
   display: flex;
   justify-content: space-around;
@@ -19,7 +18,6 @@ export const TitleBoard = Styled.h1`
   text-align: center;
 `;
 
-//**-------GameStatusHub-style-------- **/
 export const StatusList = Styled.div`
   width: 25%;
   padding: 30px;
@@ -36,8 +34,8 @@ export const Wrapper = Styled.div`
 export const OppTime = Styled.span` font-size: 3rem;`;
 export const OppTur = Styled.p``;
 export const Txt = Styled.p``;
-export const TxtTurn = Styled.h3`color: lightgreen`;
-export const Txtcolor = Styled.h3`color: red`;
+export const TxtTurn = Styled.h3`color: lightgreen;`;
+export const Txtcolor = Styled.h3`color: red;`;
 export const YourTime = Styled.span`font-size: 3rem;`;
 
 export const YourTur = Styled.p`

@@ -1,6 +1,5 @@
-import React, { useEffect } from 'react'; //useState,
-// import Home from "../../Home.jsx";
-import { Link, navigate } from "@reach/router";
+import React, { useEffect } from 'react';
+import { Link, navigate } from '@reach/router';
 import { useFormState } from 'react-use-form-state';
 
 import {
@@ -20,7 +19,7 @@ const Popup = (props) => {
 
   function handleSubmit(e) {
     e.preventDefault();
-    console.log("submit clicked");
+    console.log('submit clicked');
     console.log(formState.values);
 
     let fs = formState.values;
@@ -29,32 +28,31 @@ const Popup = (props) => {
     if (fs.color.length && fs.roomName.length && fs.time.length) { // validation
       const payload = {
         ...formState.values,
-        clientId: localStorage.getItem("userid")
+        clientId: localStorage.getItem('userid')
       }
-      props.socket.emit("createRoom", payload);
-      console.log("Sent" + formState.values);
+      props.socket.emit('createRoom', payload);
+      console.log('Sent' + formState.values);
 
     } else {
-      alert("Error: missing data");
+      alert('Error: missing data');
     }
-
   }
 
   useEffect(() => {
-    props.socket.on("roomCreated", res => {
+    props.socket.on('roomCreated', res => {
       if (res.ok) {
         navigate(`/game/${res.data.id}`)
       }
-
-    }); 
+    });
+    return () => {
+			props.socket.off('roomCreated');
+		}// eslint-disable-next-line
   }, []);
-
-
 
   return (
     <>
       <Modal>
-        {props.page === "newGame" ?
+        {props.page === 'newGame' ?
           <ModalContent>
             <ModalHeader>
               <CloseButton onClick={closeModal}>&times;</CloseButton>
@@ -71,18 +69,18 @@ const Popup = (props) => {
                 <Section>
                   <span>Game name</span>
                   <br />
-                  <input type="text" name="gametime" {...text("roomName")} />
+                  <input type='text' name='gametime' {...text('roomName')} />
                 </Section>
 
                 <Section>
                   <span>Time</span>
                   <br />
-                  <input type="number" placeholder="min..." name="time" {...number("time")} />
+                  <input type='number' placeholder='min...' name='time' {...number('time')} />
                 </Section>
 
                 <Section>
-                  <button type="submit">Creat Game</button>
-                  <Link to="RoomList">RoomList </Link>
+                  <button type='submit'>Creat Game</button>
+                  <Link to='RoomList'>RoomList </Link>
                 </Section>
               </form>
             </ModalBody>
@@ -93,15 +91,11 @@ const Popup = (props) => {
 
           </ModalContent>
           : null}
-
       </Modal>
 
-      {props.page === "home" ?
-        <div className="popup-home-container">
-
-        </div>
-        :
-        null
+      {props.page === 'home' ?
+        <div className='popup-home-container'></div>
+        :null
       }
     </>
   );

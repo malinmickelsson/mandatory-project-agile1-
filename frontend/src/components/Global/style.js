@@ -1,18 +1,14 @@
-//=======================================
-// Bara globala styling-komponenter
-//=======================================
-import styled, { createGlobalStyle } from "styled-components";
+import styled, { createGlobalStyle } from 'styled-components';
 
 export const GlobalStyle = createGlobalStyle`
   body {
     background-color: ${props =>
-      props.whiteColor ? "rgb(61, 61, 61)" : "white"};
+      props.whiteColor ? 'rgb(61, 61, 61)' : 'white'};
     font-family: ${props => props.theme.fontFamily};
     min-height: 100vh;
   }
 `;
 
-//_________ text ____________
 export const Title = styled.h1`
   font-size: 3rem;
   color: green;
@@ -33,7 +29,6 @@ export const Bodytext = styled.p`
   color: black;
 `;
 
-//_________ knappar ____________
 export const Button = styled.button`
   font-size: 1.3rem;
   background-color: #1f8500;
@@ -46,7 +41,6 @@ export const Button = styled.button`
   margin: auto auto;
 `;
 
-//_________ kort ____________
 export const Card = styled.div`
   padding: 2.5rem;
   border-radius: 5rem;
@@ -57,7 +51,6 @@ export const Card = styled.div`
   border: solid grey 1px;
 `;
 
-//_________ Header ____________
 export const Nav = styled.nav`
   height: 80px;
   min-width: 100%;
@@ -79,8 +72,6 @@ export const Box = styled.div`
     text-decoration: none;
   }
 `;
-
-/* Popup */
 
 export const Modal = styled.div`
   position: fixed;
@@ -117,7 +108,7 @@ export const ModalBody = styled.div`
   text-align: center;
   font-size: 20px;
   width: 100%;
-  // height: 18vh;
+  height: 18vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -153,11 +144,7 @@ export const Section = styled.div`
   padding: 20px;
 `;
 
-/* Popup */
-
 export const NewGame = styled.div``;
-
-/* Chatt */
 
 export const ChattInput = styled.input`
   font-size: 1rem;

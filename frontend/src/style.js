@@ -1,7 +1,5 @@
-import Styled from "styled-components";
-// Avvy- gjort från css till styled-components
+import Styled from 'styled-components';
 
-// ** ------------ Chatt.jsx style -----------------** //
 export const Span = Styled.span`
   color: white;
 `;
@@ -48,7 +46,6 @@ export const ChattMe = Styled.div`
   margin - left: 40 %;
   max - width: 60 %;
   padding: 5px;
-  /* flex-direction: row; */
 `;
 
 export const ChattUser = Styled.div`
@@ -56,7 +53,6 @@ export const ChattUser = Styled.div`
   justify - content: flex - start;
   max - width: 60 %;
   padding: 5px;
-  /* flex-direction: row; */
 `;
 
 export const ChattButton = Styled.div`
