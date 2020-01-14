@@ -1,12 +1,12 @@
 branches:
   - label: förbättring
-    name: Develop
+    name: develop
     prefix: feature/
   - label: Todo
-    name: Develop
+    name: develop
     prefix: feature/
   - label: bugg
-    name: Develop
+    name: develop
     prefix: bugfix/
   - label: '*'
     prefix: issues/
