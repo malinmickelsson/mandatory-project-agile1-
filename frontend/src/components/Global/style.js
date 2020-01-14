@@ -18,7 +18,7 @@ export const Title = styled.h1`
   color: green;
   flex: 1;
   padding: 0;
-  margin: 0 700px auto 0;
+  margin: 0 650px auto 0;
   text-shadow: 1px 1px 2px black, 0 0 1em purple, 0 0 0.2em;
 `;
 
@@ -38,6 +38,7 @@ export const SubtitleGame = styled.h3`
 
 export const Bodytext = styled.p`
   font-size: 1.5rem;
+  margin: 10px;
   color: white;
 `;
 
@@ -67,12 +68,12 @@ export const Card = styled.div`
 
 //_________ Header ____________
 export const Nav = styled.nav`
-  height: 80px;
+  height: 20vh;
   min-width: 100%;
 `;
 
 export const Links = styled.div`
-  display: inline-flex;
+  display: inline-box;
   align-items: center;
   font-size: 18px;
   padding: 0 20px;
@@ -166,6 +167,21 @@ export const ChattInput = styled.input`
   align-items: center;
   &:focus {
     background-color: #e6ffff;
+  }
+`;
+
+export const NameBox = styled.input`
+  font-size: 1rem;
+  background: none;
+  border: none;
+  border-bottom: 1px solid green;
+  color: lightgreen;
+  cursor: text;
+  outline: none;
+  padding: auto 5px;
+  text-align: center;
+  &:focus {
+    color: #e6ffff;
   }
 `;
 
