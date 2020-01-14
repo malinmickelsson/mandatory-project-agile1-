@@ -43,7 +43,7 @@ const Home = (props) => {
 			<React.Fragment>
 				<Nav>
 					<Box>
-						<Link to='/'><Title>Chess home</Title></Link>
+						<Link to='/'><Title>Chess</Title></Link>
 						<form onSubmit={handleSubmit}>
 							<input value={username} onChange={handleChange} type='text' />
 							<button type='submit'>Submit</button>

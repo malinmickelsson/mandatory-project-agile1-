@@ -3,7 +3,7 @@ import { ChattText, ChattInput, ChattButton, TurnBox } from './style';
 import { useEffect } from 'react';
 
 const Chatt = (props) => {
-  const { socket } = props;
+  const { socket, gameId } = props;
 
   const [messages, setMessages] = useState([]);
   const [message, setMessage] = useState('');
@@ -20,10 +20,13 @@ const Chatt = (props) => {
       setMessages(newMessages);
       console.log(data);
     });
+    
+    socket.emit("getMessages", { roomId: gameId });
     return () => {
       socket.off('messages');
       socket.off('newMessage')
-		}
+    }
+    
     // eslint-disable-next-line
   }, []);
 
@@ -34,7 +37,8 @@ const Chatt = (props) => {
   const handleSendMessage = e => {
     socket.emit('sendMessage', {
       msg: message,
-      roomId: props.roomId,
+      roomId: gameId,
+      clientId: localStorage.getItem("userid")
     });
     console.log('new message: ', message);
     setMessage('');

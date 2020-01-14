@@ -1,18 +1,19 @@
 // Chessboard.jsx is a chessboard for React. Inspired by chessboard.js
-import React, { useState } from 'react';
-import { Link } from '@reach/router';
+import React, { useState, useEffect } from 'react';
+import { Link, navigate } from '@reach/router';
 import Chessboard from 'chessboardjsx';
 import GameStatusHub from './GameStatusHub';
 import { ThemeProvider } from 'styled-components';
 import Chess from 'chess.js';
 
 import {
-    Boardscontainer, Body, TitleBoard, Txt, YourTur, OppTur, TurnBox, Txtcolor, TxtTurn
+  Boardscontainer, Body, TitleBoard, Txt, YourTur, OppTur, TurnBox, Txtcolor, TxtTurn
 } from './styles';
 import { Nav, Box, Title, GlobalStyle } from '../Global/style';
 
 // board defaults to the starting position
 const chess = new Chess();
+
 
 function SchackBoard(props) {
   const [colorSquare, updateColorSquare] = useState({}); // currently clicked square
@@ -44,6 +45,26 @@ function SchackBoard(props) {
     updateColorSquare(highlight);
   };
 
+  function checkOpponent() {
+    if (props.room.opponent && props.room.opponent.name) {
+      return props.room.opponent && props.room.opponent.name;
+    } else {
+      return <span>väntar på motståndare...</span>;
+    }
+  }
+
+  const isYourTurn = () => {
+    const yourId = localStorage.getItem("userid");
+    if (props.room.owner && props.room.opponent) {
+      const opponent = props.room.opponent;
+      const owner = props.room.owner;
+      const yourColor = owner.id === yourId ? owner.color : opponent.color;
+      const currentTurn = props.game.turn;
+
+      return yourColor === currentTurn;
+    }
+  }
+
   const onMouseOutSquare = () => {
     updateColorSquare({})
   }
@@ -53,24 +74,27 @@ function SchackBoard(props) {
       <TitleBoard>Chessboard</TitleBoard>
       <TurnBox><Txtcolor>{props.status}</Txtcolor></TurnBox>
       <TurnBox>
-        <YourTur>YourName</YourTur><Txt> : </Txt><OppTur> OpponentName</OppTur>
+        <YourTur>{props.room.owner && props.room.owner.name}</YourTur><Txt> : </Txt><OppTur>{checkOpponent()}</OppTur>
       </TurnBox>
       <Chessboard
         id='boardscontainer'
         orientation='black'
-        width={420}
+        width={420} // blaze it
         position={props.fen} //fen update piece position
         boardStyle={{
           borderRadius: '5px',
           boxShadow: `0 5px 15px rgba(0, 0, 0, 0.5)`,
         }}
+        draggable={
+          isYourTurn()
+        }
         dropOffBoard='trash'
         onMouseOverSquare={onMouseOverSquare}
         onMouseOutSquare={onMouseOutSquare}
         squareStyles={colorSquare}
         sparePieces={false}
         onDrop={props.onDrop}
-				dropSquareStyle={{ boxShadow: 'inset 0 0 1px 4px blue' }}
+        dropSquareStyle={{ boxShadow: 'inset 0 0 1px 4px blue' }}
         lightSquareStyle={{ backgroundColor: '#d8ffcc' }}
         darkSquareStyle={{ backgroundColor: '#1f8500' }}
       />
@@ -85,10 +109,45 @@ function GameBoard(props) {
   const [fen, updateFen] = useState('start'); // str with info of all position
   const [dragHistory, updateDragHistory] = useState([]);
   const [colorTurn, updateColorTurn] = useState('White');
-	const [status, updateStatus] = useState('');
+  const [status, updateStatus] = useState('');
+  const [room, setRoom] = useState({});
+  const [game, setGame] = useState({});
 
-	const { socket } = props;
-		
+  const { socket, gameId } = props;
+
+  useEffect(() => {
+    socket.on("roomInfo", res => {
+      if (!res.ok) { navigate("/") }; // Om backend inte hittar rummet, skicka till lobby
+      console.log(res);
+
+      const currentTurn = res.data.game.turn === "w" ? "White" : "Black";
+      updateColorTurn(currentTurn);
+      chess.load(res.data.game.fen);
+      updateDragHistory(res.data.game.history);
+      updateFen(res.data.game.fen);
+      setGame(res.data.game);
+      setRoom(res.data);
+    })
+
+    socket.on("gameInfo", res => {
+      console.log(res);
+      const currentTurn = res.data.turn === "w" ? "White" : "Black";
+      updateColorTurn(currentTurn);
+      chess.load(res.data.fen);
+      updateDragHistory(res.data.history);
+      updateFen(res.data.fen);
+      setGame(res.data);
+    })
+
+    socket.emit("gameJoined", { roomId: gameId, clientId: localStorage.getItem("userid") });
+
+    return () => {
+      socket.emit("leaveRoom", { roomId: gameId });
+      socket.off("gameInfo");
+      socket.off("roomInfo");
+    }
+  }, [])
+
   //** Only Allow Legal Moves **// 
   const onDrop = ({ sourceSquare, targetSquare }) => {
     // see if the move is legal
@@ -96,9 +155,8 @@ function GameBoard(props) {
       from: sourceSquare,
       to: targetSquare,
       promotion: 'q' // always promote to a queen for example simplicity
-		});
-		
-    //console.log(move);
+    });
+
     updateStatus('');
 
     // illegal move
@@ -107,46 +165,46 @@ function GameBoard(props) {
       return;
     }
     // who's turn is it?
-    let color = chess.turn();
-    const opponent = chess.turn() === 'b' ? 'Black' : 'White';
-    if (color === 'b') {
-      updateColorTurn('Black');
-    } else if (color === 'w') {
-        updateColorTurn('White');
-    }
+    const opponent = game.turn === 'b' ? 'Black' : 'White';
+
     // checkmate?
     if (chess.in_checkmate() === true) {
       updateStatus('Game over, ' + opponent + ' is in checkmate.');
     }// check?
     else if (chess.in_check() === true) {
-      updateStatus(opponent + ' is in check');
+      updateStatus(opponent + ' is in check'); // owner måste också får chacken?!?!?
     }// draw?
     else if (chess.in_draw() === true) {
       updateStatus('Game over, drawn position');
     }
 
-		updateFen(chess.fen());
-		
-		/** socket **/
-		socket.emit('fen', fen); //skickar den nya fen till Oscars server
-		console.log('skickar fen till servern', fen);
-		
+    updateFen(chess.fen());
+
     const movestr = move.color + move.piece + ' moved: ' + move.from + '-' + move.to;
     const newhis = [...dragHistory, movestr];
-    updateDragHistory(newhis);
+
+    const payload = {
+      fen: chess.fen(),
+      history: newhis,
+      clientId: localStorage.getItem("userid"),
+      roomId: gameId
+    }
+    socket.emit("gameTurnPlayed", payload)
   };
+
+  if (room === {}) return "Loading";
 
   return (
     <ThemeProvider theme={{ fontFamily: 'Merriweather, serif' }}>
       <React.Fragment>
         <Nav>
           <Box>
-            <Link to='/'><Title>lichess Home</Title></Link>
+            <Link to='/'><Title>Chess -back to Home</Title></Link>
           </Box>
         </Nav>
         <Boardscontainer >
-          <SchackBoard fen={fen} colorTurn={colorTurn} onDrop={onDrop} status={status} />
-          <GameStatusHub dragHistory={dragHistory} socket={socket} />
+          <SchackBoard fen={fen} game={game} colorTurn={colorTurn} onDrop={onDrop} status={status} room={room} />
+          <GameStatusHub dragHistory={dragHistory} {...props} />
         </Boardscontainer>
         <GlobalStyle whiteColor />
       </React.Fragment>

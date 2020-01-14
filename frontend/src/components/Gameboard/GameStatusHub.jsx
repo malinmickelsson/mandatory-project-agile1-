@@ -22,7 +22,7 @@ const GameStatusHub = (props) => {
       </Wrapper>
 
       <Wrapper>
-        <Chatt socket={props.socket} room={props.room} />
+        <Chatt {...props} />
       </Wrapper>
   
     </StatusList>

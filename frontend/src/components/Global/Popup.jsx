@@ -9,7 +9,7 @@ import {
 
 const Popup = (props) => {
   const [name, setName] = useState("New Game");
-  const [radio, setRadio] = useState("black");
+  const [radio, setRadio] = useState("b");
 
   function closeModal() {
     props.setNewGame(false);
@@ -66,13 +66,13 @@ const Popup = (props) => {
                 </ModalHeader>
                 
                 <Section>
-                  <ChattInput type="text" name="gametime" value={name} onChange={handleNameChange} />
+                  <ChattInput type="text" name="gametime" placeholder={name} onChange={handleNameChange} />
                 </Section>
                 
                 <Section>
                   <Subtitle>Choose color : </Subtitle>
-                  <Bodytext>black <input type="radio" value="black" onChange={handleOptionChange} checked={radio === "black"} /></Bodytext>
-                  <Bodytext>white <input type="radio" value="white" onChange={handleOptionChange} checked={radio === "white"} /></Bodytext>
+                  <Bodytext>black <input type="radio" value="b" onChange={handleOptionChange} checked={radio === "b"} /></Bodytext>
+                  <Bodytext>white <input type="radio" value="w" onChange={handleOptionChange} checked={radio === "w"} /></Bodytext>
                 </Section>
                 
                 <Section>

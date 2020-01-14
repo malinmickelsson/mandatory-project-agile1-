@@ -1,23 +1,28 @@
 const uuid = require("uuid");
 const _ = require("lodash")
 
-const createRoom = (roomName, clientId, color) => {
+const createRoom = (roomName, clientId, color, name) => {
   const roomId = uuid();
+  console.log("Name" + name)
   return {
     id: roomId,
     name: roomName,
-    owner: { id: clientId, color: color, name: "ÄgarNamn" },
+    owner: { id: clientId, color: color, name: name },
     opponent: {
       id: null,
-      color: color === "white" ? "black" : "white",
-      name: "MotståndarNamn"
+      color: color === "w" ? "b" : "w",
+      name: "Ingen motståndare"
     },
-    fen: null,
+    game: {
+      fen: "start",
+      history: [],
+      turn: "w"
+    },
     chat: []
   }
 }
 
-const joinRoom = (room, clientId) => {
+const joinRoom = (room, clientId, name) => {
   if (room.owner.id === clientId || room.opponent.id === clientId) {
     console.log("Spelare fanns redan");
     return room;
@@ -26,21 +31,14 @@ const joinRoom = (room, clientId) => {
     console.log("Lägger till opponent")
     room.opponent = {
       ...room.opponent,
-      id: clientId
+      id: clientId || null,
+      name: name
     };
     return room;
   }
 }
 
-const readChat = () => {
-
-}
-
-const sendChat = () => {
-
-}
-
-const filteredRooms = (rooms) => {
+const filteredRooms = (rooms, clientId) => {
   return rooms.map(x => {
     return {
         name: x.name,
